@@ -1,7 +1,10 @@
 'use strict';
 
+if (!window.farmbuild) {
+	window.farmbuild = {};
+	window.farmbuild.wfs = {};
+}
+
 window.farmbuild.wfs.demo = {
-	auth: {
 		version: '0.1'
-	}
 };
