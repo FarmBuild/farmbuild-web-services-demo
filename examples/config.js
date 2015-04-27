@@ -2,9 +2,9 @@
 
 if (!window.farmbuild) {
 	window.farmbuild = {};
-	window.farmbuild.wfs = {};
+	window.farmbuild.wfsSoilArea = {};
 }
 
-window.farmbuild.wfs.demo = {
+window.farmbuild.wfsSoilArea.demo = {
 		version: '0.1'
 };

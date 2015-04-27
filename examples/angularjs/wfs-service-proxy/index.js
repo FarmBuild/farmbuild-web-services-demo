@@ -4,7 +4,7 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 	.run(function($rootScope){
 		//$rootScope.appVersion = "0.1";
-		$rootScope.appVersion = farmbuild.wfs.demo.version;
+		$rootScope.appVersion = farmbuild.wfsSoilArea.demo.version;
 	})
 
 	.controller('WfsAuthCtrl', function ($scope, $http) {
