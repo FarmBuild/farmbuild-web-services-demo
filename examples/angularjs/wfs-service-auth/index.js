@@ -19,8 +19,14 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 		$scope.reset = function() {
 			$scope.error = false;
-			$scope.errorMessages = [];
-			$scope.messages = [];
+			$scope.errorMessages = {
+				'authentication':[],
+				'wfs':[]
+			};
+			$scope.messages = {
+				'authentication':[],
+				'wfs':[]
+			};
 			$scope.token = null;
 		}
 
@@ -34,16 +40,16 @@ angular.module('farmbuild.wfs.demo.auth', [])
 				}
 			})
 			res.success(function(data, status, headers, config) {
-				$scope.messages.push("Successfully connect to WFS service.  Result:");
-				$scope.messages.push(data);
+				$scope.messages.wfs.push("Successfully connect to WFS service.  Result:");
+				$scope.messages.wfs.push(data);
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
-				$scope.errorMessages.push("Error connecting to WFS "+status);
+				$scope.errorMessages.wfs.push("Error connecting to WFS "+status);
 			});
 		}
 
-		$scope.connect = function (authUrl, clientId, clientSecret, wfsUrl) {
+		$scope.authenticate = function (authUrl, clientId, clientSecret) {
 			$scope.reset();
 
 			//Authenticate to retrieve token
@@ -61,14 +67,14 @@ angular.module('farmbuild.wfs.demo.auth', [])
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			})
 			res.success(function(data, status, headers, config) {
-				$scope.messages.push("Successfully authenticated.  Token is:");
+				$scope.messages.authentication.push("Successfully authenticated.  Token is:");
 				$scope.token = data.access_token
-				$scope.messages.push($scope.token);
-				$scope.connectWFS($scope.token, $scope.wfsUrl);
+				$scope.messages.authentication.push($scope.token);
+				//$scope.connectWFS($scope.token, $scope.wfsUrl);
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
-				$scope.errorMessages.push("Error authenticating, status returned "+status);
+				$scope.errorMessages.authentication.push("Error authenticating, status returned "+status);
 			});
 		}
 
