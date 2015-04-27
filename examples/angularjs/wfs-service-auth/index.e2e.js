@@ -4,10 +4,9 @@ var config = require('./../../../config')()
 
 describe('Unauthorised Connection ', function () {
   it('unauthorised should be rejected', function (done) {
-    superagent.get(config.testWFS)
+    superagent.get(config.wfsSoilArea)
       .end(function (e, res) {
         console.log('check error: %j res: %j, res.status:%s', e, res, res.status)
-
         expect(res.status).to.equal(401)
         done()
       })
@@ -21,18 +20,26 @@ describe('WFS Authenticated Connection ', function () {
 
     console.log('authenticationForm: %s', authenticationForm)
 
-    superagent.post(config.authWFS)
+    superagent.post(config.auth)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send(authenticationForm)
       .end(function (err, res) {
         console.info('err: %j, res: %j', err, res)
         expect(res.status).to.equal(200)
 
-        //var token = res.access_token
-        //expect(token).to.equal(200)
+        var text = JSON.parse(res.text)
+        console.info('text:%s', text)
 
+        var token = text.access_token
 
-        done()
+        console.info('token: %s', token)
+        superagent.get(config.wfsSoilArea)
+          .set('Authorization', 'Bearer ' + token)
+          .end(function (e, res) {
+            console.info('err: %j, res: %j', err, res)
+            expect(res.status).to.equal(200)
+            done()
+        })
       })
   })
 
