@@ -15,8 +15,6 @@ describe('Unauthorised Connection ', function () {
 })
 
 describe('WFS Authenticated Connection ', function () {
-  console.log('testing console....')
-
   it('retrieve token', function (done) {
     var authenticationForm = 'grant_type=client_credentials&client_id=' + config.clientId
       + '&client_secret=' + config.clientSecret + '&scope=WFS_SERVICES'
