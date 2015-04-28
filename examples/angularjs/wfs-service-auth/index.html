@@ -16,11 +16,11 @@
         <small>(angularJS)</small>
     </h3>
     <hr/>
-    <form ng-submit="connect(authUrl, clientId, clientSecret, wfsUrl)" method="post"
+    <form ng-submit="authenticate(authUrl, clientId, clientSecret)" method="post"
           role="form" novalidate>
         <fieldset>
             <legend>
-                Input form
+                Authentication form
             </legend>
 
             <form-item class="form-group col-md-6">
@@ -39,63 +39,64 @@
                 <input name="clientSecret" ng-model="clientSecret" type="text" class="form-control">
             </form-item>
 
+            <buttons class="col-md-12">
+                <button type="submit" class="btn btn-primary">Authenticate</button>
+            </buttons>
+        </fieldset>
+    </form>
+    <summary>
+        <fieldset>
+            <legend>
+                Result
+            </legend>
+            <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
+                <p ng-repeat="errMsg in errorMessages.authentication">
+                    {{errMsg}}
+                </p>
+            </error>
+            <form-item class="form-group col-sm-6">
+                <p ng-repeat="msg in messages.authentication">
+                    {{msg}}
+                </p>
+            </form-item>
+        </fieldset>
+    </summary>
+
+    <form ng-submit="connectWFS(token, wfsUrl)" method="post"
+          role="form" novalidate>
+        <fieldset>
+            <legend>
+                WFS form
+            </legend>
+
             <form-item class="form-group col-md-6">
                 <label>Target WFS URL</label>
                 <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
             </form-item>
 
             <buttons class="col-md-12">
-                <button type="submit" class="btn btn-primary">Connect</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="token == null">Connect</button>
             </buttons>
         </fieldset>
     </form>
-<summary>
-    <fieldset>
-        <legend>
-            Result
-        </legend>
-        <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
-            <p ng-repeat="errMsg in errorMessages">
-                {{errMsg}}
-            </p>
-        </error>
-        <form-item class="form-group col-sm-6">
-            <p ng-repeat="msg in messages">
-                {{msg}}
-            </p>
-        </form-item>
-        <!--<form-item class="form-group col-sm-6">
-            <p>Milk Fat (Kg): <span ng-bind="result.fatInKg | number : decimalPrecision"></span></p>
+    <summary>
+        <fieldset>
+            <legend>
+                Result
+            </legend>
+            <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
+                <p ng-repeat="errMsg in errorMessages.wfs">
+                    {{errMsg}}
+                </p>
+            </error>
+            <form-item class="form-group col-sm-6">
+                <p ng-repeat="msg in messages.wfs">
+                    {{msg}}
+                </p>
+            </form-item>
+        </fieldset>
+    </summary>
 
-            <p>Milk Fat (%): <span ng-bind="result.fatPercentage | number : decimalPrecision"></span></p>
-        </form-item>
-        <form-item class="form-group col-sm-6">
-            <p>Milk Protein (Kg): <span ng-bind="result.proteinInKg | number : decimalPrecision"></span></p>
-
-            <p>Milk Protein (%): <span ng-bind="result.proteinPercentage | number : decimalPrecision"></span></p>
-        </form-item>
-        <form-item class="form-group col-sm-6">
-            <p>Nitrogen (Kg): <span ng-bind="result.nitrogenInKg | number : decimalPrecision"></span></p>
-
-            <p>Nitrogen (%): <span ng-bind="result.nitrogenPercentage | number : decimalPrecision"></span></p>
-        </form-item>
-        <form-item class="form-group col-sm-6">
-            <p>Phosphorus (Kg): <span ng-bind="result.phosphorusInKg | number : decimalPrecision"></span></p>
-
-            <p>Phosphorus (%): <span ng-bind="result.phosphorusPercentage | number : decimalPrecision"></span></p>
-        </form-item>
-        <form-item class="form-group col-sm-6">
-            <p>Potassium (Kg): <span ng-bind="result.potassiumInKg | number : decimalPrecision"></span></p>
-
-            <p>Potassium (%): <span ng-bind="result.potassiumPercentage | number : decimalPrecision"></span></p>
-        </form-item>
-        <form-item class="form-group col-sm-6">
-            <p>Sulphur (Kg): <span ng-bind="result.sulphurInKg | number : decimalPrecision"></span></p>
-
-            <p>Sulphur (%): <span ng-bind="result.sulphurPercentage | number : decimalPrecision"></span></p>
-        </form-item>-->
-    </fieldset>
-</summary>
     <version class="col-md-12">
         Version: <span ng-bind="appVersion"></span>
     </version>
