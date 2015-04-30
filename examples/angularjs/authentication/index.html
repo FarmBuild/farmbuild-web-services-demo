@@ -20,7 +20,7 @@
         <p>This page demonstrate how  use OAuth2 protocol to connect to the Farmbuild Identity Service and obtain a valid token. </p>
         <p>This token may be utilised in other Farmbuild examples to connect to the Web services. </p>
     </div>
-    <form ng-submit="authenticate(authUrl, clientId, clientSecret)" method="post"
+    <form ng-submit="authenticate(authUrl, clientId, clientSecret, authScope )" method="post"
           role="form" novalidate>
         <fieldset>
             <legend>

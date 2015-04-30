@@ -25,11 +25,11 @@ angular.module('farmbuild.wfs.demo.auth', [])
 		}
 
 
-		$scope.authenticate = function (authUrl, clientId, clientSecret) {
+		$scope.authenticate = function (authUrl, clientId, clientSecret, authScope) {
 			$scope.reset();
 
 			//Authenticate to retrieve token
-			var data = { grant_type: "client_credentials", client_id: clientId, client_secret: clientSecret, scope: "WFS_SERVICES" };
+			var data = { grant_type: "client_credentials", client_id: clientId, client_secret: clientSecret, scope: authScope };
 			var res = $http({
 				method: 'POST',
 				url: authUrl,

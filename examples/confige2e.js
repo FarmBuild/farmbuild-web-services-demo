@@ -20,7 +20,8 @@ module.exports = (function() {
 
   confige2e.wfs = {
       soils : 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/soils',
-      parcels: 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/parcels'
+      parcels: 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/parcels',
+      soilareas: 'https://farmbuild-soil.dev.ag.ecodev.vic.gov.au/areas'
       };
 
   console.log('config created: %j', confige2e);
