@@ -11,7 +11,7 @@
 angular.module('farmbuild.wfs.demo.auth', [])
 
 	.run(function($rootScope){
-		$rootScope.appVersion = "0.1";
+		$rootScope.appVersion = farmbuild.webservices.examples.version;
 		
 	})
 
@@ -19,35 +19,11 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 		$scope.reset = function() {
 			$scope.error = false;
-			$scope.errorMessages = {
-				'authentication':[],
-				'wfs':[]
-			};
-			$scope.messages = {
-				'authentication':[],
-				'wfs':[]
-			};
+			$scope.errorMessages = [];
+			$scope.messages = [];
 			$scope.token = null;
 		}
 
-		$scope.connectWFS = function(token, wfsUrl) {
-			var res = $http({
-				method: 'GET',
-				url: wfsUrl,
-				data : '',
-				headers: {
-					'Authorization': 'Bearer ' + token
-				}
-			})
-			res.success(function(data, status, headers, config) {
-				$scope.messages.wfs.push("Successfully connect to WFS service.  Result:");
-				$scope.messages.wfs.push(data);
-			});
-			res.error(function(data, status, headers, config) {
-				$scope.error = true;
-				$scope.errorMessages.wfs.push("Error connecting to WFS "+status);
-			});
-		}
 
 		$scope.authenticate = function (authUrl, clientId, clientSecret) {
 			$scope.reset();
@@ -67,23 +43,21 @@ angular.module('farmbuild.wfs.demo.auth', [])
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			})
 			res.success(function(data, status, headers, config) {
-				$scope.messages.authentication.push("Successfully authenticated.  Token is:");
+				$scope.messages.push("Successfully authenticated.  Token is:");
 				$scope.token = data.access_token
-				$scope.messages.authentication.push($scope.token);
-				//$scope.connectWFS($scope.token, $scope.wfsUrl);
+				$scope.messages.push($scope.token);
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
-				$scope.errorMessages.authentication.push("Error authenticating, status returned "+status);
+				$scope.errorMessages.push("Error authenticating, status returned "+status);
 			});
 		}
 
 		$scope.reset();
 
 		//For dev only
-		$scope.authUrl = 'https://farmbuild-sts.dev.ag.ecodev.vic.gov.au/core/connect/token';
-		$scope.clientId = 'TESTCLIENT';
-		$scope.clientSecret = 'testClientSecret';
-		$scope.wfsUrl = 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/api/AllSoils';
+		$scope.authUrl = farmbuild.webservices.examples.authentication.auth;
+		$scope.clientId = farmbuild.webservices.examples.authentication.clientId;
+		$scope.clientSecret = farmbuild.webservices.examples.authentication.clientSecret;
 
 	});

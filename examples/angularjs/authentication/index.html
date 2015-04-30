@@ -50,52 +50,18 @@
                 Result
             </legend>
             <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
-                <p ng-repeat="errMsg in errorMessages.authentication">
+                <p ng-repeat="errMsg in errorMessages">
                     {{errMsg}}
                 </p>
             </error>
             <form-item class="form-group col-sm-6">
-                <p ng-repeat="msg in messages.authentication">
+                <p ng-repeat="msg in messages">
                     {{msg}}
                 </p>
             </form-item>
         </fieldset>
     </summary>
 
-    <form ng-submit="connectWFS(token, wfsUrl)" method="post"
-          role="form" novalidate>
-        <fieldset>
-            <legend>
-                WFS form
-            </legend>
-
-            <form-item class="form-group col-md-6">
-                <label>Target WFS URL</label>
-                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
-            </form-item>
-
-            <buttons class="col-md-12">
-                <button type="submit" class="btn btn-primary" ng-disabled="token == null">Connect</button>
-            </buttons>
-        </fieldset>
-    </form>
-    <summary>
-        <fieldset>
-            <legend>
-                Result
-            </legend>
-            <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
-                <p ng-repeat="errMsg in errorMessages.wfs">
-                    {{errMsg}}
-                </p>
-            </error>
-            <form-item class="form-group col-sm-6">
-                <p ng-repeat="msg in messages.wfs">
-                    {{msg}}
-                </p>
-            </form-item>
-        </fieldset>
-    </summary>
 
     <version class="col-md-12">
         Version: <span ng-bind="appVersion"></span>
@@ -104,6 +70,7 @@
 
 <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
 <script src="../../../bower_components/farmbuild-core/dist/farmbuild-core.min.js"></script>
+<script src="../../config.js"></script>
 <script src="index.js"></script>
 
 </body>
