@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="farmbuild.webservices.examples.wfs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Farm Build WFS Service - Authentication demo (angularJS)</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-controller="WfsAuthCtrl">
+<content>
+    <h3>
+        Farmbuild WFS Service - Soils or Parcels
+        <small>(angularJS)</small>
+    </h3>
+    <hr/>
+    <div>
+        <p>This page demonstrates how to connect to the Farmbuild soils and parcels Web services. </p>
+        <p>There are two (2) ways to connect that will be demonstrated:
+            <ul>
+                <li>Using a valid token.  Refer to this <a href="../authentication">Authentication</a> demo page for example how to obtain the token.</li>
+                <li>Via a web proxy</li>
+            </ul>
+        </p>
+    </div>
+    <form ng-submit="connectWFS(wfsUrl, token, proxyUrl)" method="post"
+          role="form" novalidate>
+        <fieldset>
+            <legend>
+                Authentication form
+            </legend>
+
+            <form-item class="form-group col-md-6">
+                <label>Authentication Token</label>
+                <textarea name="token" ng-model="token" rows="4"
+                       class="form-control" ></textarea>
+            </form-item>
+
+            <form-item class="form-group col-md-6">
+                <label>Or</label>
+                <p></p>
+            </form-item>
+
+            <form-item class="form-group col-md-6">
+                <label>Authentication Proxy URL</label>
+                <input name="proxyUrl" ng-model="proxyUrl" type="text" class="form-control">
+            </form-item>
+
+        </fieldset>
+
+
+        <fieldset>
+            <legend>
+                WFS form
+            </legend>
+
+            <form-item class="form-group col-md-6">
+                <label>WFS URL</label>
+                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
+            </form-item>
+
+            <buttons class="col-md-12">
+                <button type="submit" class="btn btn-primary" ng-disabled="(wfsUrl == null) || (token == null)" ng-click="connectWithToken()">Connect With Token</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="proxyUrl == null">Connect Via Proxy</button>
+            </buttons>
+        </fieldset>
+    </form>
+
+    <summary>
+        <fieldset>
+            <legend>
+                Result
+            </legend>
+            <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
+                <p ng-repeat="errMsg in errorMessages">
+                    {{errMsg}}
+                </p>
+            </error>
+            <form-item class="form-group col-sm-6">
+                <p ng-repeat="msg in messages">
+                    {{msg}}
+                </p>
+            </form-item>
+        </fieldset>
+    </summary>
+
+    <version class="col-md-12">
+        Version: <span ng-bind="appVersion"></span>
+    </version>
+</content>
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+<script src="../../../bower_components/farmbuild-core/dist/farmbuild-core.min.js"></script>
+<!--<script src="../../../bower_components/farmbuild-core/dist/farmbuild-core.js"></script>-->
+<script src="../../config.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
