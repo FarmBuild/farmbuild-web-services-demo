@@ -5,10 +5,8 @@ if (!window.farmbuild.webservices) {
 }
 
 window.farmbuild.webservices.examples = {
-		version: '0.2',
-		authentication : {
-			auth : 'https://farmbuild-sts.dev.ag.ecodev.vic.gov.au/core/connect/token',
-			clientId : 'TESTCLIENT',
-			clientSecret : 'testClientSecret'
-		}
+	version: '0.2',
+	authentication: {
+		scopes: ['WFS_SERVICES', 'SOIL_AREA_SERVICES', 'CLIMATE_DATA_SERVICES']
+	}
 };

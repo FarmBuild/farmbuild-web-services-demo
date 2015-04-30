@@ -19,7 +19,8 @@ module.exports = (function() {
       };
 
   confige2e.wfs = {
-      soils : 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/soils'
+      soils : 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/soils',
+      parcels: 'https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/parcels'
       };
 
   console.log('config created: %j', confige2e);

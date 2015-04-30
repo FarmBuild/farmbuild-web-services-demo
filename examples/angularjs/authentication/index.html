@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Farm Build WFS Service - Authentication demo (angularJS)</title>
+    <title>Farm Build - Web Services - Authentication demo (angularJS)</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../main.css">
@@ -12,10 +12,14 @@
 <body ng-controller="WfsAuthCtrl">
 <content>
     <h3>
-        Farmbuild WFS Service - Authentication
+        Farmbuild - Web Services - Authentication
         <small>(angularJS)</small>
     </h3>
     <hr/>
+    <div>
+        <p>This page demonstrate how  use OAuth2 protocol to connect to the Farmbuild Identity Service and obtain a valid token. </p>
+        <p>This token may be utilised in other Farmbuild examples to connect to the Web services. </p>
+    </div>
     <form ng-submit="authenticate(authUrl, clientId, clientSecret)" method="post"
           role="form" novalidate>
         <fieldset>
@@ -24,9 +28,19 @@
             </legend>
 
             <form-item class="form-group col-md-6">
-                <label>Authentication Service URL</label>
+                <label>Identity Service URL</label>
                 <input name="authUrl" ng-model="authUrl" type="text"
                        class="form-control">
+            </form-item>
+
+            <form-item class="form-group col-md-6">
+                <label>Scope</label>
+                <select ng-model="authScope" class="form-control" >
+                    <option ng-repeat="item in authScopes"
+                            value="{{item}}">
+                        {{item}}
+                    </option>
+                </select>
             </form-item>
 
             <form-item class="form-group col-md-6">

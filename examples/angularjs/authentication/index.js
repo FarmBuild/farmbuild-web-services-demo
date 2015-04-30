@@ -55,9 +55,12 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 		$scope.reset();
 
+		$scope.authScopes = farmbuild.webservices.examples.authentication.scopes;
+
 		//For dev only
-		$scope.authUrl = farmbuild.webservices.examples.authentication.auth;
-		$scope.clientId = farmbuild.webservices.examples.authentication.clientId;
-		$scope.clientSecret = farmbuild.webservices.examples.authentication.clientSecret;
+		$scope.authUrl = 'https://farmbuild-sts.dev.ag.ecodev.vic.gov.au/core/connect/token';
+		$scope.clientId = 'TESTCLIENT';
+		$scope.clientSecret = 'testClientSecret';
+		$scope.authScope = '';
 
 	});

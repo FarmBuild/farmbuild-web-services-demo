@@ -2,17 +2,6 @@ var superagent = require('superagent')
 var expect = require('expect.js')
 var config = require('./../../confige2e')()
 
-describe('Unauthorised Connection ', function () {
-  it('unauthorised should be rejected', function (done) {
-    superagent.get(config.wfs.soils)
-      .end(function (e, res) {
-        console.log('check error: %j res: %j, res.status:%s', e, res, res.status)
-        expect(res.status).to.equal(401)
-        done()
-      })
-  })
-})
-
 describe('WFS Authenticated Connection ', function () {
   it('retrieve token', function (done) {
     var authenticationForm = 'grant_type=client_credentials&client_id=' + config.authentication.clientId
