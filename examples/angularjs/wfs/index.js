@@ -19,24 +19,19 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			$scope.mode = null;
 		}
 
-		$scope.connectWFS = function(wfsUrl, token, proxyUrl) {
-/*			var res = $http({
-				method: 'GET',
-				data : ''
-			})*/
+		$scope.connectWithToken = function(wfsUrl, token) {
+			$scope.error = false;
+			$scope.errorMessages = [];
+			$scope.messages = [];
 			var reqConfig = {
 				method: 'GET',
 				data : ''
 			};
-			if ('PROXY' === $scope.mode) {
-				reqConfig.url = proxyUrl;
-			}
-			else  {
-				reqConfig.url = wfsUrl;
-				reqConfig.headers= {
-					'Authorization': 'Bearer ' + token
-				};
-			}
+			reqConfig.url = wfsUrl;
+			reqConfig.headers= {
+				'Authorization': 'Bearer ' + token
+			};
+
 			var res = $http(reqConfig);
 			res.success(function(data, status, headers, config) {
 				$scope.messages.push("Successfully connect to WFS service.  Result:");
@@ -48,12 +43,25 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			});
 		}
 
-		$scope.connectWithToken = function() {
-			$scope.mode = 'TOKEN';
-		};
 
-		$scope.connectViaProxy = function() {
-			$scope.mode = 'PROXY';
+		$scope.connectViaProxy = function(proxyUrl) {
+			$scope.error = false;
+			$scope.errorMessages = [];
+			$scope.messages = [];
+			var reqConfig = {
+				method: 'GET',
+				data : '',
+				url : proxyUrl
+			};
+			var res = $http(reqConfig);
+			res.success(function(data, status, headers, config) {
+				$scope.messages.push("Successfully connect to WFS service.  Result:");
+				$scope.messages.push(data);
+			});
+			res.error(function(data, status, headers, config) {
+				$scope.error = true;
+				$scope.errorMessages.push("Error connecting to WFS "+status);
+			});
 		}
 
 		$scope.reset();

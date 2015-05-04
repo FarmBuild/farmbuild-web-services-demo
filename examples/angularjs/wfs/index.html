@@ -21,29 +21,61 @@
         <p>There are two (2) ways to connect that will be demonstrated:
             <ul>
                 <li>Using a valid token.  Refer to this <a href="../authentication">Authentication</a> demo page for example how to obtain the token.</li>
-                <li>Via a web proxy</li>
+                <li>Via a web proxy.  Refer to the src/farmbuild.WFS.ClientProxy example project.</li>
+            </ul>
+        </p>
+        <p>To connect with the token:
+            <ul>
+                <li>Copy and paste a valid token into the Authentication Token field.</li>
+                <li>Enter the WFS URL you wish to connect.</li>
+                <li>Click the "Connect With Token" button.</li>
+            </ul>
+        </p>
+        <p>To connect via proxy:
+            <ul>
+                <li>Enter the authentication proxy URL.  By default, this proxy will be listening at <i>http://localhost:9000</i>.</li>
+                <li>Click the "Connect Via Proxy" button.</li>
             </ul>
         </p>
     </div>
-    <form ng-submit="connectWFS(wfsUrl, token, proxyUrl)" method="post"
+    <form ng-submit="connectWithToken(wfsUrl, token)" method="post"
           role="form" novalidate>
         <fieldset>
             <legend>
-                Authentication form
+                Token authentication form
             </legend>
 
-            <form-item class="form-group col-md-6">
+            <form-item class="form-group col-md-12">
                 <label>Authentication Token</label>
                 <textarea name="token" ng-model="token" rows="4"
                        class="form-control" ></textarea>
             </form-item>
 
-            <form-item class="form-group col-md-6">
-                <label>Or</label>
-                <p></p>
-            </form-item>
 
             <form-item class="form-group col-md-6">
+                <label>WFS URL</label>
+                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
+            </form-item>
+        </fieldset>
+
+
+        <fieldset>
+
+            <buttons class="col-md-12">
+                <button type="submit" class="btn btn-primary" ng-disabled="(wfsUrl == null) || (token == null)" >Connect With Token</button>
+
+            </buttons>
+        </fieldset>
+    </form>
+
+    <form ng-submit="connectViaProxy(proxyUrl)" method="post"
+          role="form" novalidate>
+        <fieldset>
+            <legend>
+                Proxy form
+            </legend>
+
+            <form-item class="form-group col-md-12">
                 <label>Authentication Proxy URL</label>
                 <input name="proxyUrl" ng-model="proxyUrl" type="text" class="form-control">
             </form-item>
@@ -52,18 +84,9 @@
 
 
         <fieldset>
-            <legend>
-                WFS form
-            </legend>
-
-            <form-item class="form-group col-md-6">
-                <label>WFS URL</label>
-                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
-            </form-item>
 
             <buttons class="col-md-12">
-                <button type="submit" class="btn btn-primary" ng-disabled="(wfsUrl == null) || (token == null)" ng-click="connectWithToken()">Connect With Token</button>
-                <button type="submit" class="btn btn-primary" ng-disabled="proxyUrl == null">Connect Via Proxy</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="(proxyUrl == null)">Connect Via Proxy</button>
             </buttons>
         </fieldset>
     </form>
