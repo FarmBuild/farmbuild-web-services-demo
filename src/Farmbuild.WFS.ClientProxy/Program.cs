@@ -45,6 +45,7 @@ using System.Configuration;
 using System.IO;
 using System.Web.Http.Controllers;
 using System.Threading;
+using System.Web.Http.Cors;
 
 namespace FarmBuild.WFS.ClientProxy
 {
@@ -93,6 +94,7 @@ namespace FarmBuild.WFS.ClientProxy
         {
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{id}",
@@ -108,6 +110,7 @@ namespace FarmBuild.WFS.ClientProxy
     /// Soils controller to return WFS soils
     /// </summary>
     [Route("soils")]
+    [EnableCors(origins: "*", headers: "*", methods: "POST,GET,OPTIONS,PUT,DELETE")]
     public class SoilsController : ApiController
     {
         public dynamic Get()
@@ -126,6 +129,7 @@ namespace FarmBuild.WFS.ClientProxy
     /// Parcels controller to return WFS parcels
     /// </summary>
     [Route("parcels")]
+    [EnableCors(origins: "*", headers: "*", methods: "POST,GET,OPTIONS,PUT,DELETE")]
     public class ParcelsController : ApiController
     {
         [HttpGet]
@@ -145,6 +149,7 @@ namespace FarmBuild.WFS.ClientProxy
     /// Areas controller to return soil areas with input of Farm data
     /// </summary>
     [Route("areas")]
+    [EnableCors(origins: "*", headers: "*", methods: "POST,GET,OPTIONS,PUT,DELETE")]
     public class AreasController : ApiController
     {
         [HttpPost]
