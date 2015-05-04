@@ -103,34 +103,39 @@
 <body>
 
 <div class="header">
-    <h1>Farm Build Soil Area Services</h1>
+    <h1>Farm Build Soil Area Service</h1>
 </div>
 
 <div id="main">
     <div class="section">
 
-        <h4>
-            All requests to the FarmBuild Soil Area service require access tokens.
-            Refer Farm Build Security in how to access token
-            <a href="../farmbuild-security/index.html">Farm Build Security.</a>
-            
 
-        </h4>
+        <h4>Introduction</h4>
 
         <ul>
             <li>
-                OAuth: ClientId + Client Secret + Scope post via Callbacks—recommended for Web Apps. Refer the image on the input.
+                The Farm Build Soil Area Service allows you to take the property and paddocks features as an input
+                and provides a breakdown by soil class and type into area (Ha) and percentage of property and paddocks.
             </li>
             <li>
-                <div><img src="images/authentication_token.png" height="329" width="593" /></div>
+                The service is built in REST principles that ensures the URLs conforms to HTTP rules,
+                so a wide range of clients can be used to interact with the service. The Farm Build Soil Area Service
+                requires an input of the Farm Data based on an GeoServer output in Json format and it is a Http POST service.
             </li>
+            <li>
+                <div><img src="images/farm_data.png" height="329" width="593" /></div>
+            </li>
+
         </ul>
 
         <h4>OAuth2 Endpoints:</h4>
 
         <ul>
             <li>
-                https://farmbuild-sts.dev.ag.ecodev.vic.gov.au/core/connect/token
+                All requests to the FarmBuild Soil Area Service require to obtain an access tokens
+                from Farm Build Identity Server.
+                Refer Farm Build Security in how to obtain access token
+                <a href="../farmbuild-security/index.html">Farm Build Security.</a>
             </li>
         </ul>
 
