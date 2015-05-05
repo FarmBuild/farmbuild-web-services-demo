@@ -1,0 +1,52 @@
+{
+  "version" : 1.0,
+  "dateCreated" : "2015-03-30T21:19:00",
+  "dateLastUpdated" : "2015-03-30T21:19:06",
+  "name" : "Susan's Farm",
+  "geometry" : {
+    "type": "Polygon",
+    "crs": "EPSG:4283",
+    "coordinates": []
+  },
+  "totalArea" : 28.09,
+  "attributes" : {
+    "attribute" : {
+      "name" : "milkingArea_ha",
+      "value" : 23.34
+    }
+  },
+  "paddocks" : [
+    {
+      "name" : "P3",
+      "geometry" : {
+        "type": "Polygon",
+        "crs": "EPSG:4283",
+        "coordinates": []
+      },
+      "totalArea" : 0.72
+    },
+    {
+      "name" : "P1",
+      "geometry" : {
+        "type": "Polygon",
+        "crs": "EPSG:4283",
+        "coordinates": []
+      },
+      "totalArea" : 0.87
+    }
+  ],
+  "managementGroups" : [
+    {
+      "number" : "1",
+      "name" : "Group 1",
+      "description" : "Night Paddocks",
+      "paddocks": ["P3"]
+    },
+    {
+      "number" : "2",
+      "name" : "Group 2",
+      "description" : "Effluent",
+      "paddocks": ["P1"]
+    }
+  ]
+}
