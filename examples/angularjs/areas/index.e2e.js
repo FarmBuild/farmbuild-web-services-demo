@@ -34,13 +34,13 @@ describe('WFS Soil Areas Authenticated Connection ', function () {
         var token = text.access_token
 
         console.info('token: %s', token)
-        superagent.get(config.wfs.soils)
+        /*superagent.get(config.wfs.soilareas)
           .set('Authorization', 'Bearer ' + token)
           .end(function (e, res) {
             console.info('err: %j, res: %j', err, res)
             expect(res.status).to.equal(200)
             done()
-        })
+        })*/
       })
   })
 })
