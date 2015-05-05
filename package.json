@@ -28,6 +28,8 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor protractor.conf.js",
     "clean": "rm -rf dist/* & rm -rf docs/*",
-    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json"
+    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json",
+    "copy-core": "ncp bower_components/farmbuild-core/dist/ dist/ && ncp bower_components/farmbuild-farmdata/dist/ dist/",
+    "dist": "npm run copy-core"
   }
 }
