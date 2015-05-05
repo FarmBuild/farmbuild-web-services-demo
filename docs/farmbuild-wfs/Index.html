@@ -114,14 +114,21 @@
 
         <ul>
             <li>
-                The Farm Build Soil Area Service allows you to take the property and paddocks features as an input
-                and provides a breakdown by soil class and type into area (Ha) and percentage of property and paddocks.
+                The Farm Build WFS Services published from Geoserver for use in the mapping component
+                and also for general client use. It has two services, soils and parcels.
+            </li>
+            <li>
+                Key layer is soils (ie 1:10,000 mapping in irrigation areas and Gippsland).
+            </li>
+            <li>
+                Property will be published as a convenience but probably a rural filtered set
+                and also updated only annually.
+
             </li>
             <li>
                 The service is built in REST principles that ensures the URLs conforms to HTTP rules,
-                so a wide range of clients can be used to interact with the service. The Farm Build Soil Area Service
-                requires an input of the Farm Data based on an GeoServer output in Json format as below
-                and a Http POST service.
+                so a wide range of clients can be used to interact with the service. The Farm Build WFS Services
+                is Http Get services.
             </li>
 
         </ul>
@@ -130,11 +137,11 @@
 
         <ul>
             <li>
-                All requests to the FarmBuild Soil Area Service require to obtain an access tokens
+                All requests to the FarmBuild WFSService require to obtain an access tokens
                 from Farm Build Identity Server and input into the header as follows.
                 Refer Farm Build Security in how to obtain access token
                 <a href="../farmbuild-security/index.html">Farm Build Security.</a>
-                It requires the scope to be SOIL_AREA_SERVICES.
+                It requires the scope to be WFS_SERVICES.
             </li>
             <li>
                 Authorization - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6InpmUDJxREpRSEdyZXU1RVRMeE4zUVpQd0x
@@ -144,26 +151,32 @@
             </li>
         </ul>
 
-        <h4>End point</h4>
+        <h4>End point for soils</h4>
 
         <ul>
             <li>
-                https://farmbuild-soil.dev.ag.ecodev.vic.gov.au/areas
+                https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/soils
             </li>
 
         </ul>
 
-        <h4>Using the Farm Build Soil Area Service</h4>
+        <h4>End point for parcels</h4>
 
         <ul>
             <li>
-                Submit an HTTP POST request to the https://farmbuild-soil.dev.ag.ecodev.vic.gov.au/areas.
+                https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/parcels
+            </li>
+
+        </ul>
+
+        <h4>Using the WFS Servicse</h4>
+
+        <ul>
+            <li>
+                Submit an HTTP GET request to the https://farmbuild-ws.dev.ag.ecodev.vic.gov.au/soils.
             </li>
             <li>
-                The POST head should include an Authorization as describe above.
-            </li>
-            <li>
-                The POST body should include the Farm Build data as below.
+                The GET head should include an Authorization as describe above.
             </li>
         </ul>
 
@@ -171,7 +184,7 @@
 
         <ul>
             <li>
-                <div><img src="images/soil_area_output.png" height="445" width="614" /></div>
+                <div><img src="images/soils_output.png" height="347" width="1256" /></div>
             </li>
 
         </ul>
