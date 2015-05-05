@@ -1,0 +1,242 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number"
+    },
+    "dateCreated": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dateLastUpdated": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "crs": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "required": [],
+            "properties": {}
+          }
+        }
+      },
+      "required": [
+        "type",
+        "crs",
+        "coordinates"
+      ]
+    },
+    "totalArea": {
+      "type": "number"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "attribute": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "value"
+          ]
+        }
+      },
+      "required": [
+        "attribute"
+      ]
+    },
+    "paddocks": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "required": [
+          "name",
+          "totalArea"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "crs": {
+                "type": "string",
+                "minLength": 1
+              },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "required": [],
+                  "properties": {}
+                }
+              }
+            },
+            "required": [
+              "type",
+              "crs",
+              "coordinates"
+            ]
+          },
+          "totalArea": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "managementGroups": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "required": [
+          "number",
+          "name",
+          "description"
+        ],
+        "properties": {
+          "number": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paddocks": {
+            "type": "array",
+            "items": {
+              "required": [],
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "soilArea": {
+      "type": "object",
+      "properties": {
+        "wholeFarm": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "hectares",
+              "description",
+              "soilGroup",
+              "soilClass"
+            ],
+            "properties": {
+              "hectares": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "soilGroup": {
+                "type": "string",
+                "minLength": 1
+              },
+              "soilClass": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "paddocks": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "parea",
+              "hectares",
+              "name",
+              "description",
+              "soilGroup",
+              "soilClass"
+            ],
+            "properties": {
+              "parea": {
+                "type": "number"
+              },
+              "hectares": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "soilGroup": {
+                "type": "string",
+                "minLength": 1
+              },
+              "soilClass": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "wholeFarm",
+        "paddocks"
+      ]
+    }
+  },
+  "required": [
+    "version",
+    "dateCreated",
+    "dateLastUpdated",
+    "name",
+    "geometry",
+    "totalArea",
+    "attributes",
+    "paddocks",
+    "managementGroups",
+    "soilArea"
+  ]
+}
