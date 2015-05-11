@@ -1,14 +1,14 @@
 'use strict';
 
 
-angular.module('farmbuild.webservices.examples.soilarea', [])
+angular.module('farmbuild.webservices.examples.soilarea', ['farmbuild.farmdata'])
 
 	.run(function($rootScope){
 		$rootScope.appVersion = farmbuild.webservices.examples.version;
 		
 	})
 
-	.controller('WfsAuthCtrl', function ($scope, $http) {
+	.controller('WfsAuthCtrl', function ($scope, $http, $log , farmdata) {
 
 		$scope.reset = function() {
 			$scope.error = false;
@@ -17,15 +17,16 @@ angular.module('farmbuild.webservices.examples.soilarea', [])
 			$scope.token = null;
 			$scope.proxyUrl = null;
 			$scope.mode = null;
+      loadDefaultFarmData();
 		}
 
-		$scope.connectWithToken = function(wfsUrl, token, farmdata) {
+		$scope.connectWithToken = function(wfsUrl, token, farmdatainput) {
 			$scope.error = false;
 			$scope.errorMessages = [];
 			$scope.messages = [];
 			var reqConfig = {
 				method: 'POST',
-				data : farmdata
+				data : farmdatainput
 			};
 
 			reqConfig.url = wfsUrl;
@@ -44,13 +45,15 @@ angular.module('farmbuild.webservices.examples.soilarea', [])
 			});
 		}
 
-		$scope.connectViaProxy = function(proxyUrl, farmdata) {
+		$scope.connectViaProxy = function(proxyUrl, farmdatainput) {
 			$scope.error = false;
 			$scope.errorMessages = [];
 			$scope.messages = [];
+
+
 			var reqConfig = {
 				method: 'POST',
-				data : farmdata,
+				data : farmdatainput,
 				url : proxyUrl
 			};
 			var res = $http(reqConfig);
@@ -64,9 +67,20 @@ angular.module('farmbuild.webservices.examples.soilarea', [])
 			});
 		}
 
-		$scope.reset();
 
 
+    function loadDefaultFarmData(){
+      $http.get('../../lib/farmdata-susan.json').success(function(data) {
+        var stringifiedFarmData = JSON.stringify(data,null,"    ");
+        $scope.farmdata4token= stringifiedFarmData;
+        $scope.farmdata4proxy= stringifiedFarmData;
+
+      });
+
+    };
+
+    $scope.reset();
 		//For dev only
+
 
 	});
