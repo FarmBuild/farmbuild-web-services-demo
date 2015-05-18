@@ -10,7 +10,8 @@ module.exports = (function() {
 
   confige2e.authentication = {
       scopes : {
-        WFS : 'WFS_SERVICES'
+        WFS : 'WFS_SERVICES',
+        SOIL_AREA :'SOIL_AREA_SERVICES'
       },
       url : 'https://farmbuild-sts.dev.ag.ecodev.vic.gov.au/core/connect/token',
       scope : 'WFS_SERVICES',

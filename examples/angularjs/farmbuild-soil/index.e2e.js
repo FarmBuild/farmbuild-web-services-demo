@@ -34,6 +34,7 @@ describe('WFS Soil Areas Authenticated Connection ', function () {
         var token = text.access_token
 
         console.info('token: %s', token)
+        done()
         /*superagent.get(config.wfs.soilareas)
           .set('Authorization', 'Bearer ' + token)
           .end(function (e, res) {
