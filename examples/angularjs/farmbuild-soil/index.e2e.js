@@ -4,7 +4,7 @@ var config = require('./../../confige2e')()
 
 describe('Unauthorised Connection to WFS Soil Areas should be rejected', function () {
   it('unauthorised should be rejected', function (done) {
-    superagent.get(config.wfs.soilareas)
+    superagent.post(config.wfs.soilareas)
         .end(function (e, res) {
           console.log('check error: %j res: %j, res.status:%s', e, res, res.status)
           expect(res.status).to.equal(401)
@@ -17,7 +17,7 @@ describe('Unauthorised Connection to WFS Soil Areas should be rejected', functio
 describe('WFS Soil Areas Authenticated Connection ', function () {
   it('retrieve token', function (done) {
     var authenticationForm = 'grant_type=client_credentials&client_id=' + config.authentication.clientId
-        + '&client_secret=' + config.authentication.clientSecret + '&scope='+config.authentication.scope;
+        + '&client_secret=' + config.authentication.clientSecret + '&scope='+config.authentication.scopes.SOIL_AREA;
 
     console.log('authenticationForm: %s', authenticationForm)
 
