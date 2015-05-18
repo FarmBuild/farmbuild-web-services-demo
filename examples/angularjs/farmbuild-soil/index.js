@@ -66,7 +66,7 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
 
 
     function loadDefaultFarmData(){
-      $http.get('../../lib/farmdata-susan.json').success(function(data) {
+      $http.get('farmdata-susan.json').success(function(data) {
         var stringifiedFarmData = JSON.stringify(data,null,"    ");
         $scope.farmdata4token= stringifiedFarmData;
         $scope.farmdata4proxy= stringifiedFarmData;

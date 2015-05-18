@@ -8,7 +8,7 @@ window.farmbuild = {
 
 "use strict";
 
-angular.module("farmbuild.farmdata").factory("farmdata", function($log,farmdataSession) {
+angular.module("farmbuild.farmdata").factory("farmdata", function(farmdataSession) {
     var farmdata = {
         session: farmdataSession
     }, defaults = {
@@ -45,18 +45,14 @@ angular.module("farmbuild.farmdata").factory("farmdata", function($log,farmdataS
     };
     farmdata.isFarmData = function(farmData) {
         if (!angular.isDefined(farmData)) {
-          $log.info("isDefined");
             return false;
         }
         if (!angular.isObject(farmData)) {
-          $log.info("isObject");
             return false;
         }
         if (!farmData.hasOwnProperty("name")) {
-          $log.info("hasOwnProperty");
             return false;
         }
-      $log.info("true");
         return true;
     };
     farmdata.create = function(name) {

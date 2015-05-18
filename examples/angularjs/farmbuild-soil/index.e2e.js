@@ -68,7 +68,7 @@ describe('WFS Soil Areas Connection ', function () {
 
         var text = JSON.parse(res.text)
         var token = text.access_token;
-        var susanFarmData = fs.readFileSync(path.resolve('examples/lib/farmdata-susan.json'),'utf8');
+        var susanFarmData = fs.readFileSync(path.resolve(__dirname,'farmdata-susan.json'),'utf8');
         console.log("Read Susan's farm data from file",susanFarmData);
 
         var req = superagent.post(config.wfs.soilareas);
