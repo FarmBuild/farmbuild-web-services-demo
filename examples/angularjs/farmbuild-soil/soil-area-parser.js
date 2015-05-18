@@ -1,5 +1,5 @@
 'use strict';
-angular.module('farmbuild.webservices.examples.soilareaparser')
+angular.module('farmbuild.webservices.examples.soil')
   .factory('soilarea', function ($log) {
 
     var soilarea = {};
