@@ -119,8 +119,13 @@
                 <p ng-repeat="msg in messages">
                     {{msg}}
                 </p>
+
             </form-item>
+
         </fieldset>
+        <pre  ng-show="hasSoilInfo">
+            {{rawMsg}}
+        </pre>
     </summary>
 
     <version class="col-md-12">

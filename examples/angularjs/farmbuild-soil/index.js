@@ -18,6 +18,8 @@ angular.module('farmbuild.webservices.examples.soilarea', ['farmbuild.farmdata']
 			$scope.proxyUrl = null;
 			$scope.mode = null;
       loadDefaultFarmData();
+      $scope.hasSoilInfo = false;
+      $scope.rawMsg=null;
 		}
 
 		$scope.connectWithToken = function(wfsUrl, token, farmdatainput) {
@@ -36,8 +38,9 @@ angular.module('farmbuild.webservices.examples.soilarea', ['farmbuild.farmdata']
 
 			var res = $http(reqConfig);
 			res.success(function(data, status, headers, config) {
-				$scope.messages.push("Successfully connect to WFS service.  Result:");
-				$scope.messages.push(data);
+        $scope.messages.push("Successfully connect to WFS service.  Result:");
+        $scope.rawMsg = JSON.stringify(data,null,"    ");
+        $scope.hasSoilInfo = true;
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
@@ -59,7 +62,8 @@ angular.module('farmbuild.webservices.examples.soilarea', ['farmbuild.farmdata']
 			var res = $http(reqConfig);
 			res.success(function(data, status, headers, config) {
 				$scope.messages.push("Successfully connect to WFS service.  Result:");
-				$scope.messages.push(data);
+        $scope.rawMsg = JSON.stringify(data,null,"    ");
+        $scope.hasSoilInfo = true;
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
