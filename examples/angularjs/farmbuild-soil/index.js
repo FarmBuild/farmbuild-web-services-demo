@@ -74,6 +74,9 @@ angular.module('farmbuild.webservices.examples.soilarea', ['farmbuild.farmdata']
         var stringifiedFarmData = JSON.stringify(data,null,"    ");
         $scope.farmdata4token= stringifiedFarmData;
         $scope.farmdata4proxy= stringifiedFarmData;
+        if(farmbuild.webservices.examples.wfsSampleEndPoints){
+          $scope.wfsUrl=farmbuild.webservices.examples.wfsSampleEndPoints.soilareas;
+        }
 
       });
 

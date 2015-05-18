@@ -15,7 +15,6 @@ angular.module('farmbuild.webservices.examples.soilareaparser', ['farmbuild.farm
 			$scope.errorMessages = [];
 			$scope.messages = [];
 			$scope.token = null;
-			$scope.proxyUrl = null;
 			$scope.mode = null;
       loadDefaultFarmData();
 		}
@@ -74,7 +73,9 @@ angular.module('farmbuild.webservices.examples.soilareaparser', ['farmbuild.farm
         $scope.farmdata4proxy= stringifiedFarmData;
 
       });
-
+      if(farmbuild.webservices.examples.wfsSampleEndPoints){
+         $scope.wfsUrl=farmbuild.webservices.examples.wfsSampleEndPoints.soilareas;
+      }
     };
 
     $scope.reset();

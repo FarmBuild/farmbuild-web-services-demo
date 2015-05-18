@@ -17,6 +17,9 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			$scope.token = null;
 			$scope.proxyUrl = null;
 			$scope.mode = null;
+      if(farmbuild.webservices.examples.wfsSampleEndPoints){
+        $scope.wfsUrl=farmbuild.webservices.examples.wfsSampleEndPoints.soilareas;
+      }
 		}
 
 		$scope.connectWithToken = function(wfsUrl, token) {
