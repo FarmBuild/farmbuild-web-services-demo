@@ -54,7 +54,13 @@
 
             <form-item class="form-group col-md-6">
                 <label>WFS URL</label>
-                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
+              <select ng-model="wfsUrl"  class="form-control" >
+                <option ng-repeat="item in wfsUrlList"
+                        value="{{item}}">
+                  {{item}}
+                </option>
+              </select>
+
             </form-item>
         </fieldset>
 

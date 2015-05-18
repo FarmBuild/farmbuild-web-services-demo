@@ -20,6 +20,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
       if(farmbuild.webservices.examples.wfsSampleEndPoints){
         $scope.wfsUrl=farmbuild.webservices.examples.wfsSampleEndPoints.soils;
       }
+      $scope.wfsUrlList = [farmbuild.webservices.examples.wfsSampleEndPoints.soils ,farmbuild.webservices.examples.wfsSampleEndPoints.parcels];
       $scope.hasResponse = false;
 		}
 
@@ -27,7 +28,9 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			$scope.error = false;
 			$scope.errorMessages = [];
 			$scope.messages = [];
-			var reqConfig = {
+      $scope.rawMsg = null;
+      $scope.hasResponse = false;
+      var reqConfig = {
 				method: 'GET',
 				data : ''
 			};
@@ -39,7 +42,6 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			var res = $http(reqConfig);
 			res.success(function(data, status, headers, config) {
 				$scope.messages.push("Successfully connect to WFS service.  Result:");
-//				$scope.messages.push(data);
         $scope.hasResponse = true;
         $scope.rawMsg = JSON.stringify(data,null,"    ");
 			});
@@ -71,6 +73,11 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 				$scope.errorMessages.push("Error connecting to WFS "+status);
 			});
 		}
+
+
+
+
+
 
 		$scope.reset();
 
