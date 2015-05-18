@@ -50,7 +50,6 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
         $scope.hasSoilInfo = true;
         var farmSoilInfo =  soilarea.farmSoilArea(data);
         $scope.farmSoilInfo=farmSoilInfo;
-        $log.info(JSON.stringify(farmSoilInfo));
         $scope.paddockSoilInfo=soilarea.paddockSoilArea(data);
         $scope.rawMsg = JSON.stringify(data,null,"    ");
 			});

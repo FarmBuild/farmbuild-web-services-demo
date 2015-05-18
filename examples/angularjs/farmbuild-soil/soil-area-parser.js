@@ -16,18 +16,15 @@ angular.module('farmbuild.webservices.examples.soil')
         return undefined;
       }
 
-      $log.info('soilarea>> farmSoilArea ');
 
       var soilTypesInfo = farmSoil.types;
 
       if (!soilTypesInfo) {
         return undefined;
       }
-      $log.info('soilareaxy>>get soil types info');
 
       farmSoilTypes = soilTypes(soilTypesInfo);
 
-      $log.info('soilarea>>farm soil info');
 
       return{
         dateLastUpdated: farmSoil.dateLastUpdated,
@@ -79,8 +76,6 @@ angular.module('farmbuild.webservices.examples.soil')
         return undefined;
       }
 
-
-      $log.info('soilareaxy>> b4 for loop');
       var paddockSoils = [];
       for (var i = 0; i < paddocksInfo.length; i++) {
         var paddockName = 0,
@@ -88,20 +83,14 @@ angular.module('farmbuild.webservices.examples.soil')
           singlePaddock = paddocksInfo[i];
 
         paddockSoilTypes = soilTypes(singlePaddock.soils.types);
-        $log.info(JSON.stringify(singlePaddock.soils.types));
         var temp;
-        $log.info(JSON.stringify(paddockSoilTypes));
-//        angular.copy(paddockSoilTypes,temp);
-
-
 
         paddockSoils.push({
           paddockName: singlePaddock.name,
           soilTypes: paddockSoilTypes
         });
       }
-      ;
-      $log.info('soilareaxy>>b4 return');
+
 
       return paddockSoils;
 
