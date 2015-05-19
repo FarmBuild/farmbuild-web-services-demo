@@ -22,7 +22,9 @@ angular.module('farmbuild.webservices.examples.wfs', [])
       }
       $scope.wfsUrlList = [farmbuild.webservices.examples.wfsSampleEndPoints.soils ,farmbuild.webservices.examples.wfsSampleEndPoints.parcels];
       $scope.hasResponse = false;
+      $scope.extentFilter="\<ogc:Filter><ogc:BBOX><ogc:PropertyName>Shape</ogc:PropertyName><gml:Box srsName=\"urn:x-ogc:def:crs:EPSG:4283\"><gml:coordinates>145.57368096419663,-36.22801228957186 145.58260951039628,-36.224879531701255</gml:coordinates></gml:Box></ogc:BBOX></ogc:Filter>";
 		}
+//    "\<ogc:Filter><ogc:BBOX><ogc:PropertyName>Shape</ogc:PropertyName><gml:Box srsName=\"urn:x-ogc:def:crs:EPSG:4283\"><gml:coordinates>145.57368096419663,-36.22801228957186 145.58260951039628,-36.224879531701255</gml:coordinates></gml:Box></ogc:BBOX></ogc:Filter>";
 
 		$scope.connectWithToken = function(wfsUrl, token) {
 			$scope.error = false;
@@ -31,9 +33,9 @@ angular.module('farmbuild.webservices.examples.wfs', [])
       $scope.rawMsg = null;
       $scope.hasResponse = false;
       var reqConfig = {
-				method: 'GET',
-				data : ''
+				method: 'GET'
 			};
+      reqConfig.params = {Filter:$scope.extentFilter};
 			reqConfig.url = wfsUrl;
 			reqConfig.headers= {
 				'Authorization': 'Bearer ' + token

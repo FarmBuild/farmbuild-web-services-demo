@@ -12,7 +12,7 @@
 <body ng-controller="WfsAuthCtrl">
 <content>
     <h3>
-        Farmbuild  - Web Services - WFS Service (Soils or Parcels)
+      <a href="../index.html">Farmbuild  - Web Services</a> - WFS Service (Soils or Parcels)
         <small>(angularJS)</small>
     </h3>
     <hr/>
@@ -37,6 +37,7 @@
                 <li>Click the "Connect Via Proxy" button.</li>
             </ul>
         </p>
+      <p>Optionally the minimum bounding box of the farm considered can be given as a parameter to the extent filer. </label> </p>
     </div>
     <form ng-submit="connectWithToken(wfsUrl, token)" method="post"
           role="form" novalidate>
@@ -50,7 +51,14 @@
                 <textarea name="token" ng-model="token" rows="4"
                        class="form-control" ></textarea>
             </form-item>
-
+          <form-item class="form-group col-md-12">
+            <label>Parameter for extent filter.</label>
+            <div class="panel panel-default">
+              <div  class="panel-body">
+                {{extentFilter}}
+              </div>
+            </div>
+          </form-item>
 
             <form-item class="form-group col-md-6">
                 <label>WFS URL</label>
@@ -62,6 +70,10 @@
               </select>
 
             </form-item>
+
+
+
+
         </fieldset>
 
 
