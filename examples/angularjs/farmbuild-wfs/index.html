@@ -18,9 +18,9 @@
     <hr/>
     <div>
         <p>This page demonstrates how to connect to the Farmbuild soils and parcels Web services. </p>
-        <p>There are two (2) ways to connect that will be demonstrated:
+        <p>Two (2) ways to connect will be demonstrated:
             <ul>
-                <li>Using a valid token.  Refer to this <a href="../authentication">Authentication</a> demo page for example how to obtain the token.</li>
+                <li>Using a valid token.  Refer to this <a href="../farmbuild-oauth/index.html">Authentication</a> demo page for an example of how to obtain the token</li>
                 <li>Via a web proxy.  Refer to the src/farmbuild.WFS.ClientProxy example project.</li>
             </ul>
         </p>
@@ -54,7 +54,13 @@
 
             <form-item class="form-group col-md-6">
                 <label>WFS URL</label>
-                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
+              <select ng-model="wfsUrl"  class="form-control" >
+                <option ng-repeat="item in wfsUrlList"
+                        value="{{item}}">
+                  {{item}}
+                </option>
+              </select>
+
             </form-item>
         </fieldset>
 
@@ -107,6 +113,9 @@
                 </p>
             </form-item>
         </fieldset>
+               <pre  ng-show="hasResponse">
+                {{rawMsg}}
+            </pre>
     </summary>
 
     <version class="col-md-12">
@@ -114,7 +123,7 @@
     </version>
 </content>
 
-<script src="../../../dist/farmbuild-core.min.js"></script>
+<script src="../../lib/farmbuild-core.min.js"></script>
 <script src="../../config.js"></script>
 <script src="index.js"></script>
 

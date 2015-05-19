@@ -1,133 +1,183 @@
 <!DOCTYPE html>
-<html ng-app="farmbuild.webservices.examples.soilarea">
+<html ng-app="farmbuild.webservices.examples.soil">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Farm Build Web Service - Authentication demo (angularJS)</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Farm Build Web Service - Authentication demo (angularJS)</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
-<body ng-controller="WfsAuthCtrl">
+<body ng-controller="SoilArea">
 <content>
-    <h3>
-        Farmbuild  - Web Services - Soil Areas Service
-        <small>(angularJS)</small>
-    </h3>
-    <hr/>
+  <h3>
+    FarmBuild - Web Services - Soil Area
+    <small>(angularJS)</small>
+  </h3>
+  <hr/>
+  <div>
     <div>
-        <p>This page demonstrates how to connect to the Farmbuild soil areas Web services. </p>
-        <p>There are two (2) ways to connect that will be demonstrated:
-            <ul>
-                <li>Using a valid token.  Refer to this <a href="../authentication">Authentication</a> demo page for example how to obtain the token.</li>
-                <li>Via a web proxy</li>
-            </ul>
+      <p>There are two (2) ways to connect
+      <ul>
+        <li>Using a valid token.</li>
+        <li>Via a web proxy</li>
+      </ul>
+      <p>This page demonstrates how to connect to the FarmBuild soil area web service using a valid token.
+        To connect via proxy refer to  <a href="../farmbuild-wfs/index.html">WFS service demo</a>.
+      </p>
+
+      </p>
+      <p>To connect with the token:
+      <ul>
+        <li>Copy and paste a valid token into the Authentication Token field (an example of how to obtain the token can be found at <a href="../farmbuild-oauth/index.html">authentication</a>).</li>
+        <li>Enter the soil area service URL you wish to connect.</li>
+        <li>Enter your farm data in JSON.</li>
+        <li>Click the "Connect With Token" button.</li>
+      </ul>
+      </p>
+      </p>
+      <p>
+
+  </div>
+  <form ng-submit="connectWithToken(wfsUrl, token, farmdata4token)" method="post"
+        role="form" novalidate>
+    <fieldset>
+      <legend>
+        Token authentication form
+      </legend>
+
+      <form-item class="form-group col-md-12">
+        <label>Authentication Token</label>
+        <textarea name="token" ng-model="token" rows="4"
+                  class="form-control"></textarea>
+      </form-item>
+
+      <form-item class="form-group col-md-12">
+        <label>WFS URL</label>
+        <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
+      </form-item>
+
+      <form-item class="form-group col-md-12">
+        <label>Farm Data</label>
+        <textarea name="farmdata4token" ng-model="farmdata4token" rows="4" class="form-control"></textarea>
+      </form-item>
+    </fieldset>
+
+    <fieldset>
+
+      <buttons class="col-md-12">
+        <button type="submit" class="btn btn-primary"
+                ng-disabled="(wfsUrl == null) || (token == null) || (farmdata4token==null)">Connect With Token
+        </button>
+
+      </buttons>
+    </fieldset>
+  </form>
+
+
+  <summary>
+    <fieldset>
+      <legend>
+        Result
+      </legend>
+      <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
+        <p ng-repeat="errMsg in errorMessages">
+          {{errMsg}}
         </p>
-        <p>To connect with the token:
-        <ul>
-            <li>Copy and paste a valid token into the Authentication Token field.</li>
-            <li>Enter the WFS URL you wish to connect.</li>
-            <li>Enter your farm data in JSON.</li>
-            <li>Click the "Connect With Token" button.</li>
-        </ul>
-        </p>
-        <p>To connect via proxy:
-        <ul>
-            <li>Enter the authentication proxy URL.  By default, this proxy will be listening at <i>http://localhost:9000</i>.</li>
-            <li>Enter your farm data in JSON.</li>
-            <li>Click the "Connect Via Proxy" button.</li>
-        </ul>
-        </p>
-    </div>
-    <form ng-submit="connectWithToken(wfsUrl, token, farmdata4token)" method="post"
-          role="form" novalidate>
-        <fieldset>
-            <legend>
-                Token authentication form
-            </legend>
+      </error>
+    </fieldset>
+    <!--track by $index-->
 
-            <form-item class="form-group col-md-12">
-                <label>Authentication Token</label>
-                <textarea name="token" ng-model="token" rows="4"
-                       class="form-control" ></textarea>
-            </form-item>
+    <soil-info ng-show="hasSoilInfo">
+      <legend>Farm Soil Information</legend>
 
-            <form-item class="form-group col-md-12">
-                <label>WFS URL</label>
-                <input name="wfsUrl" ng-model="wfsUrl" type="text" class="form-control">
-            </form-item>
+      <table class="table table-striped">
+        <tr>
+        <th>Area
+        </th>
+        <th>Description
+        </th>
+        <th>Soil Group
+        </th>
+        <th>Soil Class
+        </th>
+        </tr>
+        <tr ng-repeat="item in farmSoilInfo.types">
+          <td>
+            {{item.area}}
+          </td>
+          <td>
+            {{item.description}}
+          </td>
+          <td>
+            {{item.soilGroup}}
+          </td>
+          <td>
+            {{item.soilClass}}
+          </td>
 
-            <form-item class="form-group col-md-12">
-                <label>Farm Data</label>
-                <textarea name="farmdata4token" ng-model="farmdata4token" rows="4"
-                          class="form-control" ></textarea>
-            </form-item>
-        </fieldset>
+        </tr>
 
-        <fieldset>
-
-            <buttons class="col-md-12">
-                <button type="submit" class="btn btn-primary" ng-disabled="(wfsUrl == null) || (token == null) || (farmdata4token==null)" >Connect With Token</button>
-
-            </buttons>
-        </fieldset>
-    </form>
-
-    <form ng-submit="connectViaProxy(proxyUrl, farmdata4proxy)" method="post"
-          role="form" novalidate>
+      </table>
 
 
-        <fieldset>
-            <legend>
-                Proxy form
-            </legend>
+      <legend>Paddock Soil Information</legend>
 
-            <form-item class="form-group col-md-12">
-                <label>Authentication Proxy URL</label>
-                <input name="proxyUrl" ng-model="proxyUrl" type="text" class="form-control">
-            </form-item>
+      <paddocks ng-repeat="item in paddockSoilInfo">
+        <td>
+          Paddock Name: {{item.paddockName}}
+        </td>
+        <table class="table table-striped">
+          <tr>
+          <th class="col">Area
+          </th>
+          <th>Description
+          </th>
+          <th>Soil Group
+          </th>
+          <th>Soil Class
+          </th>
+          </tr>
+          <tr ng-repeat="soil in item.soilTypes">
+            <td>
+              {{soil.area}}
+            </td>
+            <td>
+              {{soil.description}}
+            </td>
+            <td>
+              {{soil.soilGroup}}
+            </td>
+            <td>
+              {{soil.soilClass}}
+            </td>
 
-            <form-item class="form-group col-md-12">
-                <label>Farm Data</label>
-                <textarea name="farmdata4proxy" ng-model="farmdata4proxy" rows="4"
-                          class="form-control" ></textarea>
-            </form-item>
-        </fieldset>
-        <fieldset>
+            </td>
+          </tr>
 
-            <buttons class="col-md-12">
-                <button type="submit" class="btn btn-primary" ng-disabled="(proxyUrl == null) || (farmdata4proxy == null)" >Connect Via Proxy</button>
-            </buttons>
-        </fieldset>
-    </form>
+        </table>
+      </paddocks>
+      <legend>Raw JSON</legend>
 
-    <summary>
-        <fieldset>
-            <legend>
-                Result
-            </legend>
-            <error ng-cloak class="col-sm-12 bg-danger" ng-show="error">
-                <p ng-repeat="errMsg in errorMessages">
-                    {{errMsg}}
-                </p>
-            </error>
-            <form-item class="form-group col-sm-6">
-                <p ng-repeat="msg in messages">
-                    {{msg}}
-                </p>
-            </form-item>
-        </fieldset>
-    </summary>
 
-    <version class="col-md-12">
-        Version: <span ng-bind="appVersion"></span>
-    </version>
+    </soil-info>
+
+    <pre  ng-show="hasSoilInfo">
+      {{rawMsg}}
+    </pre>
+  </summary>
+
+  <version class="col-md-12">
+    Version: <span ng-bind="appVersion"></span>
+  </version>
 </content>
 
-<script src="../../../dist/farmbuild-core.min.js"></script>
+<script src="../../lib/farmbuild-core.min.js"></script>
+<script src="../../lib/farmbuild-farmdata.js"></script>
 <script src="../../config.js"></script>
 <script src="index.js"></script>
+<script src="soil-area-parser.js"></script>
 
 </body>
 </html>

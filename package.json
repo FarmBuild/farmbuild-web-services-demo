@@ -29,7 +29,7 @@
     "protractor": "protractor protractor.conf.js",
     "clean": "rm -rf dist/* & rm -rf docs/*",
     "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json",
-    "copy-core": "ncp bower_components/farmbuild-core/dist/ dist/ && ncp bower_components/farmbuild-farmdata/dist/ dist/",
+    "copy-core": "ncp bower_components/farmbuild-core/dist/ examples/lib/ && ncp bower_components/farmbuild-farmdata/data/ examples/angularjs/farmbuild-soil/ && ncp bower_components/farmbuild-farmdata/dist/ examples/lib/",
     "dist": "npm run copy-core"
   }
 }
