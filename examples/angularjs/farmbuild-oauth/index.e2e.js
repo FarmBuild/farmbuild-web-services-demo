@@ -5,7 +5,7 @@ var config = require('./../../confige2e')()
 describe('WFS Authenticated Connection ', function () {
   it('retrieve token', function (done) {
     var authenticationForm = 'grant_type=client_credentials&client_id=' + config.authentication.clientId
-      + '&client_secret=' + config.authentication.clientSecret + '&scope=WFS_SERVICES';
+      + '&client_secret=' + config.authentication.clientSecret + '&scope=SOIL_AREA_SERVICES';
 
     console.log('authenticationForm: %s', authenticationForm)
     console.log('authentication URL: %s', config.authentication.url)
