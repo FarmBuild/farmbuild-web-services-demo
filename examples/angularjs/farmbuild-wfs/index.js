@@ -26,7 +26,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 		}
 //    "\<ogc:Filter><ogc:BBOX><ogc:PropertyName>Shape</ogc:PropertyName><gml:Box srsName=\"urn:x-ogc:def:crs:EPSG:4283\"><gml:coordinates>145.57368096419663,-36.22801228957186 145.58260951039628,-36.224879531701255</gml:coordinates></gml:Box></ogc:BBOX></ogc:Filter>";
 
-		$scope.connectWithToken = function(wfsUrl, token) {
+		$scope.connectWithToken = function(wfsUrl) {
 			$scope.error = false;
 			$scope.errorMessages = [];
 			$scope.messages = [];
@@ -37,9 +37,6 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			};
       reqConfig.params = {Filter:$scope.extentFilter};
 			reqConfig.url = wfsUrl;
-			reqConfig.headers= {
-				'Authorization': 'Bearer ' + token
-			};
 
 			var res = $http(reqConfig);
 			res.success(function(data, status, headers, config) {
@@ -52,33 +49,6 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 				$scope.errorMessages.push("Error connecting to WFS "+status);
 			});
 		}
-
-
-		$scope.connectViaProxy = function(proxyUrl) {
-			$scope.error = false;
-			$scope.errorMessages = [];
-			$scope.messages = [];
-			var reqConfig = {
-				method: 'GET',
-				data : '',
-				url : proxyUrl
-			};
-			var res = $http(reqConfig);
-			res.success(function(data, status, headers, config) {
-				$scope.messages.push("Successfully connect to WFS service.  Result:");
-//				$scope.messages.push(data);
-        $scope.hasResponse = true;
-        $scope.rawMsg = JSON.stringify(data,null,"    ");
-			});
-			res.error(function(data, status, headers, config) {
-				$scope.error = true;
-				$scope.errorMessages.push("Error connecting to WFS "+status);
-			});
-		}
-
-
-
-
 
 
 		$scope.reset();
