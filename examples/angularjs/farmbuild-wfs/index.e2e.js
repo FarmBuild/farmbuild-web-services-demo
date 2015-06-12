@@ -49,7 +49,7 @@ describe('WFS Soils Connection ', function () {
         superagent.get(config.wfs.soils)
 //          .set('Authorization', 'Bearer ' + token)
           .end(function (e, res) {
-            console.info('err: %j, res: %j', err, res)
+            console.info('err: %j, res: %j',e, res)
             expect(res.status).to.equal(200);
             done();
         })
