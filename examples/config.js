@@ -15,8 +15,8 @@ window.farmbuild.webservices.examples = {
     soilareas: 'https://farmbuild-soil.dev.ag.ecodev.vic.gov.au/areas'
   },
   wfsSampleEndPoints : {
-    soils : 'https://farmbuild-wfs.stg.ag.ecodev.vic.gov.au/soils',
-    parcels: 'https://farmbuild-wfs.stg.ag.ecodev.vic.gov.au/parcels',
+    soils : 'https://farmbuild-wfs-stg.agriculture.vic.gov.au/geoserver/farmbuild/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=farmbuild:soils&outputFormat=text/javascript',
+    parcels: 'https://farmbuild-wfs-stg.agriculture.vic.gov.au/geoserver/farmbuild/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=farmbuild:parcels&outputFormat=text/javascript',
     soilareas: 'https://farmbuild-soil-stg.agriculture.vic.gov.au/areas'
   }
 
