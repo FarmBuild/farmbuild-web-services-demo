@@ -44,13 +44,14 @@ describe('WFS Soils Connection ', function () {
 //
 //        var token = text.access_token
 
-        console.info('config.wfsSampleEndPoints.soils: %s', config.wfs.soils)
+        console.info('config.wfsSampleEndPoints.soils: %s', config.wfs.soils);
+        config.wfs.soils =config.wfs.soils+'&maxFeatures=50';
         superagent.get(config.wfs.soils)
 //          .set('Authorization', 'Bearer ' + token)
           .end(function (e, res) {
-//            console.info('err: %j, res: %j', err, res)
-            expect(res.status).to.equal(200)
-            done()
+            console.info('err: %j, res: %j', err, res)
+            expect(res.status).to.equal(200);
+            done();
         })
 //      })
   })
