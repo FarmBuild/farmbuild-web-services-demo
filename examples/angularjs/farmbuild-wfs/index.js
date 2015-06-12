@@ -46,7 +46,14 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
-				$scope.errorMessages.push("Error connecting to WFS "+status);
+        var errorToDisplay = "Error authenticating, status returned "+status ;
+        switch(status){
+          case 401:{
+            errorToDisplay ='Access has been denied please contact the FarmBuild administrator.';
+            break;
+          }
+        }
+        $scope.errorMessages.push(errorToDisplay);
 			});
 		}
 
