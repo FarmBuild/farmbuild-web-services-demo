@@ -30,6 +30,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
         }
 //    "\<ogc:Filter><ogc:BBOX><ogc:PropertyName>Shape</ogc:PropertyName><gml:Box srsName=\"urn:x-ogc:def:crs:EPSG:4283\"><gml:coordinates>145.57368096419663,-36.22801228957186 145.58260951039628,-36.224879531701255</gml:coordinates></gml:Box></ogc:BBOX></ogc:Filter>";
 
+<<<<<<< HEAD
         $scope.connectWithToken = function (wfsUrl) {
             $scope.error = false;
             $scope.errorMessages = [];
@@ -42,7 +43,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 
 
             //reqConfig.params = {Filter: $scope.extentFilter};
-            reqConfig.url = wfsUrl;
+            reqConfig.url = wfsUrl;s
             reqConfig.params = {
                 service: 'WFS',
                 version: '1.0.0',
@@ -81,3 +82,43 @@ angular.module('farmbuild.webservices.examples.wfs', [])
         //For dev only
 
     });
+=======
+		$scope.connectWithToken = function(wfsUrl) {
+			$scope.error = false;
+			$scope.errorMessages = [];
+			$scope.messages = [];
+      $scope.rawMsg = null;
+      $scope.hasResponse = false;
+      var reqConfig = {
+				method: 'GET'
+			};
+      reqConfig.params = {Filter:$scope.extentFilter};
+			reqConfig.url = wfsUrl;
+
+			var res = $http(reqConfig);
+			res.success(function(data, status, headers, config) {
+				$scope.messages.push("Successfully connect to WFS service.  Result:");
+        $scope.hasResponse = true;
+        $scope.rawMsg = JSON.stringify(data,null,"    ");
+			});
+			res.error(function(data, status, headers, config) {
+				$scope.error = true;
+        var errorToDisplay = "Error authenticating, status returned "+status ;
+        switch(status){
+          case 401:{
+            errorToDisplay ='Access has been denied please contact the FarmBuild administrator.';
+            break;
+          }
+        }
+        $scope.errorMessages.push(errorToDisplay);
+			});
+		}
+
+
+		$scope.reset();
+
+
+		//For dev only
+
+	});
+>>>>>>> 91021198b33ea0d5be0a57bb2175f78fe2763a8a

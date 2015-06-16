@@ -49,7 +49,18 @@ angular.module('farmbuild.wfs.demo.auth', [])
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
-				$scope.errorMessages.push("Error authenticating, status returned "+status);
+        var errorToDisplay = "Error authenticating, status returned "+status ;
+        switch(status){
+          case 400:{
+            errorToDisplay ='One or more of the field values are invalid.';
+            break;
+          }
+          case 401:{
+            errorToDisplay ='Access has been denied please contact the FarmBuild administrator.';
+            break;
+          }
+        }
+				$scope.errorMessages.push(errorToDisplay);
 			});
 		}
 
