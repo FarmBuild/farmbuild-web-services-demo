@@ -17,32 +17,39 @@
     </h3>
     <hr/>
     <div>
-        <p>This page demonstrates how to connect to the Farmbuild soils and parcels Web services. </p>
-      <p>Optionally the minimum bounding box of the farm considered can be given as a parameter to the extent filer. </p>
+      <p>This page demonstrates how to connect to the Farmbuild soils and parcels Web services. </p>
+      <p>The minimum bounding box of the farm considered can be given as a parameter to the extent filer. </p>
     </div>
     <form ng-submit="connectWithToken(wfsUrl, token)" method="post"
           role="form" novalidate>
         <fieldset>
 
-          <form-item class="form-group col-md-12">
-            <label>Parameter for extent filter.</label>
-            <div class="panel panel-default">
-              <div  class="panel-body">
-                {{extentFilter}}
-              </div>
-            </div>
-          </form-item>
-
-            <form-item class="form-group col-md-6">
+            <form-item class="form-group col-md-12">
                 <label>WFS URL</label>
-              <select ng-model="wfsUrl"  class="form-control" >
-                <option ng-repeat="item in wfsUrlList"
-                        value="{{item}}">
-                  {{item}}
-                </option>
-              </select>
-
+                <div class="panel panel-default">
+                    <div  class="panel-body">
+                        {{wfsUrl}}
+                    </div>
+                </div>
             </form-item>
+
+
+            <form-item class="form-group col-md-12">
+                <label>Extent filter.</label>
+                <div class="panel panel-default">
+                    <div  class="panel-body">
+                        {{extentFilter}}
+                    </div>
+                </div>
+            </form-item>
+
+
+            <form-item class="form-group col-md-12">
+                <label>Service type</label>
+                <select ng-model="wfsType"  class="form-control" ng-options="item.label for item in wfsTypeList" style="width: 50%">
+                </select>
+            </form-item>
+
         </fieldset>
 
 
