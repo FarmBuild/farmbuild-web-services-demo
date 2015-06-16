@@ -36,7 +36,8 @@
       <p>To connect via proxy:
         <ul>
             <li>Enter the authentication proxy URL.  By default, this proxy will be listening at <i>http://localhost:9000</i>.</li>
-            <li>Click the "Connect Via Proxy" button.</li>
+        <li>Enter your farm data in JSON.</li>
+            <li>Click the "Connect With Proxy" button.</li>
         </ul>
       </p>
 
@@ -75,6 +76,36 @@
       </buttons>
     </fieldset>
   </form>
+
+      <form ng-submit="connectWithProxy(proxyUrl, farmdata4proxy)" method="post"
+            role="form" novalidate>
+          <fieldset>
+              <legend>
+                  Proxy connection form
+              </legend>
+
+
+              <form-item class="form-group col-md-12">
+                  <label>Proxy URL</label>
+                  <input name="proxyUrl" ng-model="proxyUrl" type="text" class="form-control">
+              </form-item>
+
+              <form-item class="form-group col-md-12">
+                  <label>Farm Data</label>
+                  <textarea name="farmdata4proxy" ng-model="farmdata4proxy" rows="4" class="form-control"></textarea>
+              </form-item>
+          </fieldset>
+
+          <fieldset>
+
+              <buttons class="col-md-12">
+                  <button type="submit" class="btn btn-primary"
+                          ng-disabled="(proxyUrl == null) || (farmdata4proxy == null)">Connect With Proxy
+                  </button>
+
+              </buttons>
+          </fieldset>
+      </form>
 
 
   <summary>
