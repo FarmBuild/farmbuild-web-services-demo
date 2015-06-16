@@ -12,12 +12,12 @@ angular.module('farmbuild.webservices.examples.soil')
 
       var farmSoil = soilareaResponse.soils;
 
-      if (!farmSoil) {
+      if (!farmSoil || !farmSoil.soilAreas) {
         return undefined;
       }
 
 
-      var soilTypesInfo = farmSoil.types;
+      var soilTypesInfo = farmSoil.soilAreas.types;
 
       if (!soilTypesInfo) {
         return undefined;
@@ -82,7 +82,7 @@ angular.module('farmbuild.webservices.examples.soil')
           paddockSoilTypes = [],
           singlePaddock = paddocksInfo[i];
 
-        paddockSoilTypes = soilTypes(singlePaddock.soils.types);
+        paddockSoilTypes = soilTypes(singlePaddock.soils.soilAreas.types);
         var temp;
 
         paddockSoils.push({

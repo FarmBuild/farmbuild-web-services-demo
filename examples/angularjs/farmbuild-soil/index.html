@@ -23,11 +23,7 @@
         <li>Using a valid token.</li>
         <li>Via a web proxy</li>
       </ul>
-      <p>This page demonstrates how to connect to the FarmBuild soil area web service using a valid token.
-        To connect via proxy refer to  <a href="../farmbuild-wfs/index.html">WFS service demo</a>.
-      </p>
 
-      </p>
       <p>To connect with the token:
       <ul>
         <li>Copy and paste a valid token into the Authentication Token field (an example of how to obtain the token can be found at <a href="../farmbuild-oauth/index.html">authentication</a>).</li>
@@ -35,9 +31,14 @@
         <li>Enter your farm data in JSON.</li>
         <li>Click the "Connect With Token" button.</li>
       </ul>
+
+
+      <p>To connect via proxy:
+        <ul>
+            <li>Enter the authentication proxy URL.  By default, this proxy will be listening at <i>http://localhost:9000</i>.</li>
+            <li>Click the "Connect Via Proxy" button.</li>
+        </ul>
       </p>
-      </p>
-      <p>
 
   </div>
   <form ng-submit="connectWithToken(wfsUrl, token, farmdata4token)" method="post"

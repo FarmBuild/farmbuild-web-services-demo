@@ -24,14 +24,6 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
 			$scope.errorMessages = [];
 			$scope.messages = [];
 
-
-//      if(!(farmdata.isFarmData(farmdatainput))){
-//        $log.info("fatm data chk validity");
-//        $scope.error = true;
-//        $scope.errorMessages.push("Error malformed farm data");
-//        return;
-//      }
-
 			var reqConfig = {
 				method: 'POST',
 				data : farmdatainput
@@ -43,30 +35,31 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
 			};
 
 			var res = $http(reqConfig);
-			res.success(function(data, status, headers, config) {
+            res.success(function (data, status, headers, config) {
 
-				$scope.messages.push("Successfully connect to WFS service.  Result:");
+                $scope.messages.push("Successfully connect to WFS service.  Result:");
 
-        $scope.hasSoilInfo = true;
-        var farmSoilInfo =  soilarea.farmSoilArea(data);
-        $scope.farmSoilInfo=farmSoilInfo;
-        $scope.paddockSoilInfo=soilarea.paddockSoilArea(data);
-        $scope.rawMsg = JSON.stringify(data,null,"    ");
-			});
+                $scope.hasSoilInfo = true;
+                var farmSoilInfo = soilarea.farmSoilArea(data);
+                $scope.farmSoilInfo = farmSoilInfo;
+                $scope.paddockSoilInfo = soilarea.paddockSoilArea(data);
+                $scope.rawMsg = JSON.stringify(data, null, "    ");
+            });
 
-			res.error(function(data, status, headers, config) {
-				$scope.error = true;
-        var errorToDisplay = "Error authenticating, status returned "+status ;
-        switch(status){
-          case 401:{
-            errorToDisplay ='Access has been denied please contact the FarmBuild administrator.';
-            break;
-          }
+            res.error(function (data, status, headers, config) {
+                $scope.error = true;
+                var errorToDisplay = "Error authenticating, status returned " + status;
+                switch (status) {
+                    case 401:
+                    {
+                        errorToDisplay = 'Access has been denied please contact the FarmBuild administrator.';
+                        break;
+                    }
+                }
+                $scope.errorMessages.push(errorToDisplay);
+                $scope.hasSoilInfo = false;
+            });
         }
-        $scope.errorMessages.push(errorToDisplay);
-        $scope.hasSoilInfo = false;
-			});
-		}
 
 
 
