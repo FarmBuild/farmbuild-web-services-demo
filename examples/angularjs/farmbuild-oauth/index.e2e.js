@@ -3,7 +3,7 @@ var expect = require('expect.js')
 var config = require('./../../confige2e')()
 
 describe('WFS Authenticated Connection ', function () {
-  it('retrieve token', function (done) {
+/*  it('retrieve token', function (done) {
     var authenticationForm = 'grant_type=client_credentials&client_id=' + config.authentication.clientId
       + '&client_secret=' + config.authentication.clientSecret + '&scope=SOIL_AREA_SERVICES';
 
@@ -25,6 +25,6 @@ describe('WFS Authenticated Connection ', function () {
         console.info('token: %s', token);
           done();
       })
-  })
+  })*/
 
 })
