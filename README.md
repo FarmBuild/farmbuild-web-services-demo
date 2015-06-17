@@ -9,7 +9,7 @@ For more information on the FarmBuild project and its registration process, plea
 To get you started simply download this repository using <a href="https://github.com/FarmBuild/farmbuild-web-services-demo/archive/master.zip" target="_blank">"Download ZIP"</a> on the right side of this page.
 Unzip the downloaded folder and go to "examples/angularjs/" and open the index.html file in a browser.
 
-For more information about the FarmBuild WFS & Soil Area Web service, see the <a href="https://github.com/FarmBuild/farmbuild-web-services-demo/wiki" target="_blank">Wiki</a> section.
+For more information about the FarmBuild WFS & Soil Areas Web service, see the <a href="https://github.com/FarmBuild/farmbuild-web-services-demo/wiki" target="_blank">Wiki</a> section.
 
 ### WFS Soils & Rural Parcels demo
 Click <a href="https://rawgit.com/FarmBuild/farmbuild-web-services-demo/master/examples/angularjs/farmbuild-wfs/index.html" target="_blank">here</a> to view the example page.
