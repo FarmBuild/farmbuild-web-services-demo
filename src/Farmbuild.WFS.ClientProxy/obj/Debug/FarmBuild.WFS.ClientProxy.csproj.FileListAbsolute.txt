@@ -1,0 +1,1 @@
+C:\webstorm\farmbuild-web-services-demo\src\farmbuild.WFS.ClientProxy\bin\Debug\FarmBuild.WFS.ClientProxy.exe.config

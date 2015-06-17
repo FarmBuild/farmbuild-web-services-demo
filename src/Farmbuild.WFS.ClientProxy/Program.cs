@@ -63,7 +63,7 @@ namespace FarmBuild.WFS.ClientProxy
                 {
                     var clientId = args[0];
                     var clientSecert = args[1];
-                    var scope = "WFS_SERVICES SOIL_AREA_SERVICES CLIMATE_DATA_SERVICES";
+                    var scope = "SOIL_AREA_SERVICES";
                     ClientInformation.SetClientInformation(clientId, clientSecert, scope);
                     string baseAddress = "http://localhost:9000/";
 
@@ -106,45 +106,6 @@ namespace FarmBuild.WFS.ClientProxy
 
     }
 
-    /// <summary>
-    /// Soils controller to return WFS soils
-    /// </summary>
-    [Route("soils")]
-    [EnableCors(origins: "*", headers: "*", methods: "POST,GET,OPTIONS,PUT,DELETE")]
-    public class SoilsController : ApiController
-    {
-        public dynamic Get()
-        {
-            var response = WebApi.GetToken();
-            var token = JsonConvert.DeserializeObject<Token>(response.Json.ToString());
-            var allSoilsUri = ConfigurationManager.AppSettings["WfsUri"];
-            var request = allSoilsUri + "/soils";
-
-            var responseApi =  WebApi.GetApi(token, request);
-            return responseApi.Result;
-        }
-
-    }
-    /// <summary>
-    /// Parcels controller to return WFS parcels
-    /// </summary>
-    [Route("parcels")]
-    [EnableCors(origins: "*", headers: "*", methods: "POST,GET,OPTIONS,PUT,DELETE")]
-    public class ParcelsController : ApiController
-    {
-        [HttpGet]
-        public dynamic Get()
-        {
-            var response = WebApi.GetToken();
-            var token = JsonConvert.DeserializeObject<Token>(response.Json.ToString());
-            var allSoilsUri = ConfigurationManager.AppSettings["WfsUri"];
-            var request = allSoilsUri + "/parcels";
-            var responseApi = WebApi.GetApi(token, request);
-            return responseApi.Result;
-
-        }
-
-    }
     /// <summary>
     /// Areas controller to return soil areas with input of Farm data
     /// </summary>
