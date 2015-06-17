@@ -72,20 +72,6 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
             execute(reqConfig);
         }
 
-        $scope.connectWithProxy = function (proxyUrl, farmdatainput) {
-            $scope.error = false;
-            $scope.errorMessages = [];
-            $scope.messages = [];
-
-            var reqConfig = {
-                method: 'POST',
-                data: farmdatainput
-            };
-
-            reqConfig.url = proxyUrl;
-
-            execute(reqConfig);
-        }
 
 
         function loadDefaultFarmData() {
