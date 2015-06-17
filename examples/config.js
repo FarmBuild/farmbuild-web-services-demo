@@ -5,7 +5,7 @@ if (!window.farmbuild.webservices) {
 }
 
 window.farmbuild.webservices.examples = {
-	version: '0.2',
+	version: '1.0',
 	authentication: {
 		scopes: ['SOIL_AREA_SERVICES']
 	},
@@ -16,11 +16,11 @@ window.farmbuild.webservices.examples = {
   },
   wfsSampleEndPoints : {
     wfs : {
-        "url" : 'https://farmbuild-wfs-stg.agriculture.vic.gov.au/geoserver/farmbuild/wfs',
+        "url" : 'https://farmbuild-wfs.agriculture.vic.gov.au/geoserver/farmbuild/wfs',
         "soilTypeName" : 'farmbuild:soils',
         "parcelsTypeName" : 'farmbuild:parcels'
     },
-    soilareas: 'https://farmbuild-soil-stg.agriculture.vic.gov.au/areas'
+    soilareas: 'https://farmbuild-soil.agriculture.vic.gov.au/areas'
   }
 
 };

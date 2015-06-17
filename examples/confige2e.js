@@ -10,13 +10,12 @@ module.exports = (function() {
 
   confige2e.authentication = {
       scopes : {
-        WFS : 'WFS_SERVICES',
         SOIL_AREA :'SOIL_AREA_SERVICES'
       },
       url : 'https://oauth-fb-stg.agriculture.vic.gov.au/core/connect/token',
       scope : 'WFS_SERVICES',
-      clientId : 'TESTCLIENT',
-      clientSecret : 'testClientSecret'
+      clientId : '',
+      clientSecret : ''
       };
 
   confige2e.devwfs = {
