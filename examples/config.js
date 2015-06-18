@@ -18,7 +18,7 @@ window.farmbuild.webservices.examples = {
     wfs : {
         "url" : 'https://farmbuild-wfs.agriculture.vic.gov.au/geoserver/farmbuild/wfs',
         "soilTypeName" : 'farmbuild:soils',
-        "parcelsTypeName" : 'farmbuild:parcels'
+        "parcelsTypeName" : 'farmbuild:ruralparcels'
     },
     soilareas: 'https://farmbuild-soil.agriculture.vic.gov.au/areas'
   }
