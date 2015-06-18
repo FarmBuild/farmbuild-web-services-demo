@@ -78,10 +78,14 @@
                 </p>
             </error>
 
-            <form-item class="form-group col-sm-6">
+            <form-item class="form-group col-sm-12">
                 <p ng-repeat="msg in messages">
                     {{msg}}
                 </p>
+            </form-item>
+            <form-item class="form-group col-sm-12">
+
+                <textarea name="token" ng-model="token" rows="8" class="form-control"></textarea>
             </form-item>
         </fieldset>
     </summary>

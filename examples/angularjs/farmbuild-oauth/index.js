@@ -45,7 +45,7 @@ angular.module('farmbuild.wfs.demo.auth', [])
 			res.success(function(data, status, headers, config) {
 				$scope.messages.push("Successfully authenticated.  Token is:");
 				$scope.token = data.access_token
-				$scope.messages.push($scope.token);
+				
 			});
 			res.error(function(data, status, headers, config) {
 				$scope.error = true;
