@@ -17,10 +17,14 @@
     </h3>
     <hr/>
     <div>
-      <p>This page demonstrates how to connect to the Farmbuild soils and parcels Web services. </p>
-      <p>The minimum bounding box of the farm considered can be given as a parameter to the extent filer. </p>
+      <p>This page demonstrates how to connect to the FarmBuild soils and rural parcels WFS services.
+          It is not the intention of this page to provide extensive view of WFS capability.
+          To know about WFS in detail, please download the specification at
+          <a href="http://www.opengeospatial.org/standards/wfs">http://www.opengeospatial.org/standards/wfs</a>.</p>
+      <p>For the purpose of this demonstration, the minimum bounding box of the location considered is passed as a parameter to the extent filer. </p>
+        <p>Please check the <a href="https://github.com/FarmBuild/farmbuild-web-services-demo/wiki">WIKI</a> page for a more detailed explanation about this service. </p>
     </div>
-    <form ng-submit="connectWithToken(wfsUrl, token)" method="post"
+    <form ng-submit="connect(wfsUrl, wfsType)" method="post"
           role="form" novalidate>
         <fieldset>
 

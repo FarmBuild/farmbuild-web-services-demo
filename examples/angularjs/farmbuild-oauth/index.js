@@ -1,13 +1,9 @@
 'use strict';
 
-/*app.config(['$httpProvider', function ($httpProvider) {
-	//Reset headers to avoid OPTIONS request (aka preflight)
-	$httpProvider.defaults.headers.common = {};
-	$httpProvider.defaults.headers.post = {};
-	$httpProvider.defaults.headers.put = {};
-	$httpProvider.defaults.headers.patch = {};
-}]);*/
-
+/**
+ * This example page is developed using the JavaScript MVC framework called AngularJS.
+ * You can find out more about AngularJS at https://angularjs.org
+ */
 angular.module('farmbuild.wfs.demo.auth', [])
 
 	.run(function($rootScope){
@@ -17,6 +13,9 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 	.controller('WfsAuthCtrl', function ($scope, $http) {
 
+        /**
+         * Sets all variables and outputs to their initial state.
+         */
 		$scope.reset = function() {
 			$scope.error = false;
 			$scope.errorMessages = [];
@@ -25,6 +24,13 @@ angular.module('farmbuild.wfs.demo.auth', [])
 		}
 
 
+        /**
+         * Connects to the Farmbuild identity service to obtain an authentication token
+         * @param authUrl       Identity service end point URL
+         * @param clientId      Client id
+         * @param clientSecret  Client secret
+         * @param authScope     Service scope
+         */
 		$scope.authenticate = function (authUrl, clientId, clientSecret, authScope) {
 			$scope.reset();
 
