@@ -6,22 +6,22 @@
  */
 angular.module('farmbuild.wfs.demo.auth', [])
 
-	.run(function($rootScope){
-		$rootScope.appVersion = farmbuild.webservices.examples.version;
-		
-	})
+    .run(function ($rootScope) {
+        $rootScope.appVersion = farmbuild.webservices.examples.version;
 
-	.controller('WfsAuthCtrl', function ($scope, $http) {
+    })
+
+    .controller('WfsAuthCtrl', function ($scope, $http) {
 
         /**
          * Sets all variables and outputs to their initial state.
          */
-		$scope.reset = function() {
-			$scope.error = false;
-			$scope.errorMessages = [];
-			$scope.messages = [];
-			$scope.token = null;
-		}
+        $scope.reset = function () {
+            $scope.error = false;
+            $scope.errorMessages = [];
+            $scope.messages = [];
+            $scope.token = null;
+        }
 
 
         /**
@@ -31,51 +31,58 @@ angular.module('farmbuild.wfs.demo.auth', [])
          * @param clientSecret  Client secret
          * @param authScope     Service scope
          */
-		$scope.authenticate = function (authUrl, clientId, clientSecret, authScope) {
-			$scope.reset();
+        $scope.authenticate = function (authUrl, clientId, clientSecret, authScope) {
+            $scope.reset();
 
-			//Authenticate to retrieve token
-			var data = { grant_type: "client_credentials", client_id: clientId, client_secret: clientSecret, scope: authScope };
-			var res = $http({
-				method: 'POST',
-				url: authUrl,
-				data: data,
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			})
-			res.success(function(data, status, headers, config) {
-				$scope.messages.push("Successfully authenticated.  Token is:");
-				$scope.token = data.access_token
-				
-			});
-			res.error(function(data, status, headers, config) {
-				$scope.error = true;
-        var errorToDisplay = "Error authenticating, status returned "+status ;
-        switch(status){
-          case 400:{
-            errorToDisplay ='One or more of the field values are invalid.';
-            break;
-          }
-          case 401:{
-            errorToDisplay ='Access has been denied please contact the FarmBuild administrator.';
-            break;
-          }
+            //Authenticate to retrieve token
+            var data = {
+                grant_type: "client_credentials",
+                client_id: clientId,
+                client_secret: clientSecret,
+                scope: authScope
+            };
+            var res = $http({
+                method: 'POST',
+                url: authUrl,
+                data: data,
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+            res.success(function (data, status, headers, config) {
+                $scope.messages.push("Successfully authenticated.  Token is:");
+                $scope.token = data.access_token
+
+            });
+            res.error(function (data, status, headers, config) {
+                $scope.error = true;
+                var errorToDisplay = "Error authenticating, status returned " + status;
+                switch (status) {
+                    case 400:
+                    {
+                        errorToDisplay = 'One or more of the field values are invalid.';
+                        break;
+                    }
+                    case 401:
+                    {
+                        errorToDisplay = 'Access has been denied please contact the FarmBuild administrator.';
+                        break;
+                    }
+                }
+                $scope.errorMessages.push(errorToDisplay);
+            });
         }
-				$scope.errorMessages.push(errorToDisplay);
-			});
-		}
 
-		$scope.reset();
+        $scope.reset();
 
-		$scope.authScopes = farmbuild.webservices.examples.authentication.scopes;
+        $scope.authScopes = farmbuild.webservices.examples.authentication.scopes;
 
-		$scope.authUrl = 'https://oauth-fb.agriculture.vic.gov.au/core/connect/token';
-		$scope.clientId, $scope.clientSecret;
-		$scope.authScope = 'SOIL_AREA_SERVICES';
+        $scope.authUrl = 'https://oauth-fb.agriculture.vic.gov.au/core/connect/token';
+        $scope.clientId, $scope.clientSecret;
+        $scope.authScope = 'SOIL_AREA_SERVICES';
 
-	});
+    });
