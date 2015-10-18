@@ -29,7 +29,8 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
 
         /**
          * Executes Ajax POST with the given request configuration.
-         * @param reqConfig
+         *
+         * @param reqConfig     Ajax request configuration
          */
         function execute(reqConfig) {
             var res = $http(reqConfig);
@@ -67,9 +68,9 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
         /**
          * Connects to the Soil Area service with the given authentication token and farm data input
          *
-         * @param wfsUrl
-         * @param token
-         * @param farmdatainput
+         * @param wfsUrl            Soil Area Service end point URL
+         * @param token             Authentication token
+         * @param farmdatainput     farmdata JSON containing geometry information
          */
         $scope.connectWithToken = function (wfsUrl, token, farmdatainput) {
             $scope.error = false;
@@ -90,6 +91,9 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
         }
 
 
+        /**
+         * Load the example susan's farm data JSON file from the server
+         */
         function loadDefaultFarmData() {
             $http.get('farmdata-susan.json').success(function (data) {
                 var stringifiedFarmData = JSON.stringify(data, null, "    ");
@@ -103,7 +107,7 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
         };
 
         $scope.reset();
-        //For dev only
+
 
 
     }

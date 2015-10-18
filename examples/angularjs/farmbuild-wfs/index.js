@@ -94,6 +94,5 @@ angular.module('farmbuild.webservices.examples.wfs', [])
         $scope.reset();
 
 
-        //For dev only
 
     });

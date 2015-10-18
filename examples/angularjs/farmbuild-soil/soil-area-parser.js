@@ -3,7 +3,7 @@
 /**
  * This module is developed using the JavaScript MVC framework called AngularJS.
  * You can find out more about AngularJS at https://angularjs.org.
- * This module formats the farmdata soils into a UI friendly object.  It is not part of the API and is strictly used by
+ * This module formats the FarmData soils into a UI friendly object.  It is not part of the API and is strictly used by
  * the soil area demonstration page to display data in a more readable format.
  */
 angular.module('farmbuild.webservices.examples.soil')
@@ -78,7 +78,7 @@ angular.module('farmbuild.webservices.examples.soil')
         }
 
         /**
-         * Formats the Farm data paddock soilblock to display in the example page
+         * Formats the Farm data paddock soil block to display in the example page
          *
          * @param soilareaResponse  FarmData response from Soil Area service
          * @returns the formatted farm paddocks soil type data

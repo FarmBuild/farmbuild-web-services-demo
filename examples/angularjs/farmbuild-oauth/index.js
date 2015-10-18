@@ -25,7 +25,7 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 
         /**
-         * Connects to the Farmbuild identity service to obtain an authentication token
+         * Connects to the FarmBuild identity service to obtain an authentication token
          * @param authUrl       Identity service end point URL
          * @param clientId      Client id
          * @param clientSecret  Client secret
@@ -74,7 +74,6 @@ angular.module('farmbuild.wfs.demo.auth', [])
 
 		$scope.authScopes = farmbuild.webservices.examples.authentication.scopes;
 
-		//For dev only
 		$scope.authUrl = 'https://oauth-fb.agriculture.vic.gov.au/core/connect/token';
 		$scope.clientId, $scope.clientSecret;
 		$scope.authScope = 'SOIL_AREA_SERVICES';
