@@ -23,9 +23,15 @@ angular.module('farmbuild.webservices.examples.wfs', [])
             $scope.error = false;
             $scope.errorMessages = [];
             $scope.messages = [];
+            /**
+             * Read the wfs URL the config.js file located in examples directory
+             */
             if (farmbuild.webservices.examples.wfsSampleEndPoints) {
                 $scope.wfsUrl = farmbuild.webservices.examples.wfsSampleEndPoints.wfs.url;
             }
+            /**
+             * Prepare the drop down of service type by reading from  the config.js file
+             */
             $scope.wfsTypeList = [
                 {'label': 'Soils', 'url': farmbuild.webservices.examples.wfsSampleEndPoints.wfs.soilTypeName},
                 {'label': 'Rural Parcels', 'url': farmbuild.webservices.examples.wfsSampleEndPoints.wfs.parcelsTypeName}
@@ -48,6 +54,10 @@ angular.module('farmbuild.webservices.examples.wfs', [])
             $scope.messages = [];
             $scope.rawMsg = null;
             $scope.hasResponse = false;
+
+            /**
+             * Prepare request header for the soil/parcels service
+             */
             var reqConfig = {
                 method: 'GET'
             };
@@ -64,18 +74,32 @@ angular.module('farmbuild.webservices.examples.wfs', [])
                 bbox: bbox
             }
 
+            /**
+             * Connect to the soils/parcels service using JSONP protocol
+             */
             var res = $http.jsonp(reqConfig.url, {
                 params: reqConfig.params
             });
+            /**
+             * Successfully receive response from server
+             */
             res.success(function (data, status, headers, config) {
                 $scope.messages.push("Successfully connect to WFS service.  Result:");
                 $scope.hasResponse = true;
                 $scope.rawMsg = JSON.stringify(data, null, "    ");
             });
+            /**
+             * Flag that an error is encountered
+             */
             res.error(function (data, status, headers, config) {
                 $scope.error = true;
-
             });
+            /**
+             * This block is executed regardless if the result is successful or failed.
+             * It is required because this is the only way to examine the raw server response object since it's not
+             * available in the error block
+             *
+             */
             res.then(function (response) {
                 if ($scope.error) {
                     if (response.status + '' == '401') {

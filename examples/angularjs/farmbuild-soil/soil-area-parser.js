@@ -23,19 +23,26 @@ angular.module('farmbuild.webservices.examples.soil')
             $log.info('soilarea>>farmSoilArea');
             var farmSoilTypes = [];
 
+            /**
+             * Checks that FarmData response contains soil area block
+             */
             var farmSoil = soilareaResponse.soils;
-
             if (!farmSoil || !farmSoil.soilAreas) {
                 return undefined;
             }
 
-
+            /**
+             * Checks that soil area block contains the soil types
+             */
             var soilTypesInfo = farmSoil.soilAreas.types;
 
             if (!soilTypesInfo) {
                 return undefined;
             }
 
+            /**
+             * Format the soil types block for display
+             */
             farmSoilTypes = soilTypes(soilTypesInfo);
 
 
@@ -91,7 +98,9 @@ angular.module('farmbuild.webservices.examples.soil')
                 return undefined;
             }
 
-
+            /**
+             * Checks that FarmData response contains paddock block
+             */
             var paddocksInfo = soilareaResponse.paddocks;
 
             if (!paddocksInfo) {
@@ -99,6 +108,9 @@ angular.module('farmbuild.webservices.examples.soil')
             }
 
             var paddockSoils = [];
+            /**
+             * For every paddock, format the soil information for display
+             */
             for (var i = 0; i < paddocksInfo.length; i++) {
                 var paddockName = 0,
                     paddockSoilTypes = [],

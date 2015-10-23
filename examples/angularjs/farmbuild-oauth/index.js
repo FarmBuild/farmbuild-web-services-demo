@@ -7,6 +7,9 @@
 angular.module('farmbuild.wfs.demo.auth', [])
 
     .run(function ($rootScope) {
+        /**
+         * Read the application version from the config.js file located in examples directory
+         */
         $rootScope.appVersion = farmbuild.webservices.examples.version;
 
     })
@@ -34,13 +37,22 @@ angular.module('farmbuild.wfs.demo.auth', [])
         $scope.authenticate = function (authUrl, clientId, clientSecret, authScope) {
             $scope.reset();
 
-            //Authenticate to retrieve token
+            /**
+             *  Prepare JSON data to submit to the authentication server
+             */
             var data = {
                 grant_type: "client_credentials",
                 client_id: clientId,
                 client_secret: clientSecret,
                 scope: authScope
             };
+
+            /**
+             * Submits data to the authentication server.
+             * Note that by default angular post the data in JSON format, however the authentication
+             * server expects data in HTML form format (i.e: "key1=value1&key2=value2..."
+             * This is why the transform method is required.
+             */
             var res = $http({
                 method: 'POST',
                 url: authUrl,
@@ -53,11 +65,17 @@ angular.module('farmbuild.wfs.demo.auth', [])
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
+            /**
+             * Successfully receive response from server
+             */
             res.success(function (data, status, headers, config) {
                 $scope.messages.push("Successfully authenticated.  Token is:");
                 $scope.token = data.access_token
 
             });
+            /**
+             * Handles server error response
+             */
             res.error(function (data, status, headers, config) {
                 $scope.error = true;
                 var errorToDisplay = "Error authenticating, status returned " + status;
