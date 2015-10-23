@@ -7,6 +7,9 @@
 angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'farmbuild.webservices.examples.soil'])
 
     .run(function ($rootScope) {
+        /**
+         * Read the application version from the config.js file located in examples directory
+         */
         $rootScope.appVersion = farmbuild.webservices.examples.version;
 
     })
@@ -34,17 +37,29 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
          */
         function execute(reqConfig) {
             var res = $http(reqConfig);
+            /**
+             * Successfully receive response from server
+             */
             res.success(function (data, status, headers, config) {
 
                 $scope.messages.push("Successfully connect to Soil Area service.  Result:");
 
                 $scope.hasSoilInfo = true;
+                /**
+                 * Formats the farm soil area for display using the soil area parser utility
+                 */
                 var farmSoilInfo = soilarea.farmSoilArea(data);
                 $scope.farmSoilInfo = farmSoilInfo;
+
+                /**
+                 * Formats the paddock soil area for display using the soil area parser utility
+                 */
                 $scope.paddockSoilInfo = soilarea.paddockSoilArea(data);
                 $scope.rawMsg = JSON.stringify(data, null, "    ");
             });
-
+            /**
+             * Handles server error response
+             */
             res.error(function (data, status, headers, config) {
                 $scope.error = true;
                 var errorToDisplay = "Error authenticating, status returned " + status;
@@ -77,12 +92,18 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
             $scope.errorMessages = [];
             $scope.messages = [];
 
+            /**
+             * Prepare request header to be sent to Soil Area Service
+             */
             var reqConfig = {
                 method: 'POST',
                 data: farmdatainput
             };
 
             reqConfig.url = wfsUrl;
+            /**
+             * This is where the OAuth2 token is set in the header
+             */
             reqConfig.headers = {
                 'Authorization': 'Bearer ' + token
             };
@@ -98,8 +119,6 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'fa
             $http.get('farmdata-susan.json').success(function (data) {
                 var stringifiedFarmData = JSON.stringify(data, null, "    ");
                 $scope.farmdata4token = stringifiedFarmData;
-
-
             });
             if (farmbuild.webservices.examples.wfsSampleEndPoints) {
                 $scope.wfsUrl = farmbuild.webservices.examples.wfsSampleEndPoints.soilareas;
