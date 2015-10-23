@@ -1,31 +1,42 @@
 'use strict';
 
+/**
+ * This example page is developed using the JavaScript MVC framework called AngularJS.
+ * You can find out more about AngularJS at https://angularjs.org
+ */
+angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata', 'farmbuild.webservices.examples.soil'])
 
-angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','farmbuild.webservices.examples.soil'])
+    .run(function ($rootScope) {
+        $rootScope.appVersion = farmbuild.webservices.examples.version;
 
-	.run(function($rootScope){
-		$rootScope.appVersion = farmbuild.webservices.examples.version;
-		
-	})
+    })
 
-	.controller('SoilArea', function ($scope, $http, $log , farmdata, soilarea) {
+    .controller('SoilArea', function ($scope, $http, $log, farmdata, soilarea) {
 
-		$scope.reset = function() {
-			$scope.error = false;
-			$scope.errorMessages = [];
-			$scope.messages = [];
-			$scope.token = null;
-			$scope.mode = null;
+        /**
+         * Sets all variables and outputs to their initial state.
+         */
+        $scope.reset = function () {
+            $scope.error = false;
+            $scope.errorMessages = [];
+            $scope.messages = [];
+            $scope.token = null;
+            $scope.mode = null;
 
             $scope.proxyUrl = 'http://localhost:9000';
             loadDefaultFarmData();
-		}
+        }
 
+        /**
+         * Executes Ajax POST with the given request configuration.
+         *
+         * @param reqConfig     Ajax request configuration
+         */
         function execute(reqConfig) {
             var res = $http(reqConfig);
             res.success(function (data, status, headers, config) {
 
-                $scope.messages.push("Successfully connect to WFS service.  Result:");
+                $scope.messages.push("Successfully connect to Soil Area service.  Result:");
 
                 $scope.hasSoilInfo = true;
                 var farmSoilInfo = soilarea.farmSoilArea(data);
@@ -54,6 +65,13 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
             });
         }
 
+        /**
+         * Connects to the Soil Area service with the given authentication token and FarmData input
+         *
+         * @param wfsUrl            Soil Area Service end point URL
+         * @param token             Authentication token
+         * @param farmdatainput     FarmData JSON containing geometry information
+         */
         $scope.connectWithToken = function (wfsUrl, token, farmdatainput) {
             $scope.error = false;
             $scope.errorMessages = [];
@@ -73,12 +91,14 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
         }
 
 
-
+        /**
+         * Load the example susan's FarmData JSON file from the server
+         */
         function loadDefaultFarmData() {
             $http.get('farmdata-susan.json').success(function (data) {
                 var stringifiedFarmData = JSON.stringify(data, null, "    ");
                 $scope.farmdata4token = stringifiedFarmData;
-                $scope.farmdata4proxy = stringifiedFarmData;
+
 
             });
             if (farmbuild.webservices.examples.wfsSampleEndPoints) {
@@ -87,10 +107,9 @@ angular.module('farmbuild.webservices.examples.soil', ['farmbuild.farmdata','far
         };
 
         $scope.reset();
-		//For dev only
 
 
-	}
 
+    }
 );
 
