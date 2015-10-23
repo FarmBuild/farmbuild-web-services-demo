@@ -14,7 +14,7 @@ angular.module('farmbuild.webservices.examples.soil')
         $log.info('soilarea');
 
         /**
-         * Formats the farm soil area section in the farm data block to display in the example page.
+         * Formats the farm soil area section in the FarmData block to display in the example page.
          *
          * @param soilareaResponse      FarmData response from Soil Area service
          * @returns the formatted farm soil area data
@@ -46,8 +46,8 @@ angular.module('farmbuild.webservices.examples.soil')
         };
 
         /**
-         * Formats the Farm data soil type block to display in the example page
-         * @param typesInfo         Farm data block soils.soilArea section
+         * Formats the FarmData soil type block to display in the example page
+         * @param typesInfo         FarmData block soils.soilArea section
          * @returns the formatted farm soil type data
          */
         var soilTypes = function (typesInfo) {
@@ -78,7 +78,7 @@ angular.module('farmbuild.webservices.examples.soil')
         }
 
         /**
-         * Formats the Farm data paddock soil block to display in the example page
+         * Formats the FarmData paddock soil block to display in the example page
          *
          * @param soilareaResponse  FarmData response from Soil Area service
          * @returns the formatted farm paddocks soil type data
