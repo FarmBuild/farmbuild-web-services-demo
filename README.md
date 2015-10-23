@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Web Services Demo](#web-services-demo)
+  - [Getting Started](#getting-started)
+    - [WFS Soils & Rural Parcels demo](#wfs-soils-&-rural-parcels-demo)
+    - [Soil Area Web Service](#soil-area-web-service)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 #Web Services Demo
 
 This is a demonstration of the FarmBuild WFS Soils & Rural Parcels and the Soil Areas Web Service project.
