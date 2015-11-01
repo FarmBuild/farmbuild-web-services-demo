@@ -1,16 +1,38 @@
 'use strict';
 
 /**
- * This example page is developed using the JavaScript MVC framework called AngularJS.
+ * AngularJS is popular JavaScript MVC framework which is developed by google.
+ * In this example we use AngularJS to construct the structure of the client side application.
  * You can find out more about AngularJS at https://angularjs.org
+ * In farmbuild project we have used AngularJS as an internal dependency to provide modular structure, but to use FarmBuild JavaScript libraries you are forced to use AngularJS.
+ * All the api function are available via "farmbuild" namespace (eg: farmbuild.webmapping, farmbuild.nutrientcalculator).
+ * If you are using AngularJS in your application you can consume farmbuild component as AngularJS modules, similar to this example.
+ */
+ 
+ /**
+ * Defining my application. There are no dependency at this point so I am passing an empty array.
  */
 angular.module('farmbuild.webservices.examples.wfs', [])
-
+	/**
+	 * In AngularJS Every application has a single root scope.
+	 * All other scopes are descendant scopes of the root scope.
+	 * Scopes provide separation between the model and the view, via a mechanism for watching the model for changes.
+	 * They also provide an event emission/broadcast and subscription facility.
+	 * See the AngularJS developer guide on scopes.
+	 * https://docs.angularjs.org/guide/scope
+	 */
+	 
+ 	/**
+	 * "run" method is executed before any other function in application, so I am putting my initial configs here.
+	 */
     .run(function ($rootScope) {
         $rootScope.appVersion = farmbuild.webservices.examples.version;
 
     })
 
+	/**
+	 * "controller" is where I put the logic of my application
+	 */
     .controller('WfsAuthCtrl', function ($scope, $http) {
 
         var extent = [16204823.698695935, -4332241.187057228, 16206541.143175218, -4331412.32303176];
@@ -30,7 +52,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
                 $scope.wfsUrl = farmbuild.webservices.examples.wfsSampleEndPoints.wfs.url;
             }
             /**
-             * Prepare the drop down of service type by reading from  the config.js file
+             * Prepare the drop down of service type by reading from the config.js file
              */
             $scope.wfsTypeList = [
                 {'label': 'Soils', 'url': farmbuild.webservices.examples.wfsSampleEndPoints.wfs.soilTypeName},
@@ -76,6 +98,11 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 
             /**
              * Connect to the soils/parcels service using JSONP protocol
+             * The $http service is a core Angular service that facilitates communication
+             * with the remote HTTP servers via the browser's XMLHttpRequest object or via JSONP.
+             * JSONP (or JSON with Padding) is a technique used by web developers to overcome the cross-domain 
+             * restrictions imposed by browsers to allow data to be retrieved from systems other than the one the page was served by.
+             * Read more about JSONP: https://en.wikipedia.org/wiki/JSONP
              */
             var res = $http.jsonp(reqConfig.url, {
                 params: reqConfig.params
