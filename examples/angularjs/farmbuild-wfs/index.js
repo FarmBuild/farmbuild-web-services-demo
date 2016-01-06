@@ -4,13 +4,14 @@
  * AngularJS is popular JavaScript MVC framework which is developed by google.
  * In this example we use AngularJS to construct the structure of the client side application.
  * You can find out more about AngularJS at https://angularjs.org
- * In farmbuild project we have used AngularJS as an internal dependency to provide modular structure, but to use FarmBuild JavaScript libraries you are forced to use AngularJS.
+ * In farmbuild project we have used AngularJS as an internal dependency to provide modular structure, but to use FarmBuild JavaScript libraries you are not forced to use AngularJS.
  * All the api function are available via "farmbuild" namespace (eg: farmbuild.webmapping, farmbuild.nutrientcalculator).
+ * Have a look at the jQuery example section to understand more on how to use farmbuild api without directly. (https://github.com/FarmBuild/farmbuild-dairy-nutrient-calculator/tree/master/examples/jquery)
  * If you are using AngularJS in your application you can consume farmbuild component as AngularJS modules, similar to this example.
  */
  
  /**
- * Defining my application. There are no dependency at this point so I am passing an empty array.
+ * Defining my application. There are no dependency at this point so we are passing an empty array.
  */
 angular.module('farmbuild.webservices.examples.wfs', [])
 	/**
@@ -23,7 +24,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
 	 */
 	 
  	/**
-	 * "run" method is executed before any other function in application, so I am putting my initial configs here.
+	 * "run" method is executed before any other function in application, so we are putting my initial configs here.
 	 */
     .run(function ($rootScope) {
         $rootScope.appVersion = farmbuild.webservices.examples.version;
@@ -31,7 +32,7 @@ angular.module('farmbuild.webservices.examples.wfs', [])
     })
 
 	/**
-	 * "controller" is where I put the logic of my application
+	 * "controller" is where we put the logic of my application
 	 */
     .controller('WfsAuthCtrl', function ($scope, $http) {
 
