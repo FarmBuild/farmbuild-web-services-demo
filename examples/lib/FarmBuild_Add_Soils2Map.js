@@ -1,3 +1,10 @@
+//Simply Include this JS file in the head of you index.htm mapping page.
+//<script src="../path to file/FarmBuild_Add_Soils2Map.js"></script>
+//Add the farmBuildSoilsWFS() call to the "function _createFarmLayers" return new Layers function [otherLayers,
+//and functions called to the Layer group, farmBuildSoilsWFS()]
+
+
+
 function farmBuildSoilsWFS(){
 		console.log("1");
 		//setTimeout(function(){
@@ -12,17 +19,17 @@ function farmBuildSoilsWFS(){
 		var group6 = [0,102,204,0.5];
       
 		var groupLevels = {
-        '0': group0, // 
-        '1':group1, // 
-        '2': group2, // 
-        '3':group3, // 
-        '4': group4, // 
-        '5': group5, // 
-        '6': group6 // 
+        	'0': group0, // 
+        	'1':group1, // 
+        	'2': group2, // 
+        	'3':group3, // 
+        	'4': group4, // 
+        	'5': group5, // 
+        	'6': group6 // 
         
-      };
+      		};
 
-		var defaultStyle = new ol.style.Style({
+	var defaultStyle = new ol.style.Style({
         fill: new ol.style.Fill({
           color: [250,250,250,1]
         }),
